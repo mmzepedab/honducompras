@@ -70,7 +70,7 @@ class QuestionController extends Controller
 		if(isset($_POST['Question']))
 		{
 			$model->attributes=$_POST['Question'];
-			if($model->save())
+			if($model->save() && $model->saveAttributes(array('create_user'=>Yii::app()->user->name,)) && $model->saveAttributes(array('update_user'=>Yii::app()->user->name,)))
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
@@ -94,7 +94,7 @@ class QuestionController extends Controller
 		if(isset($_POST['Question']))
 		{
 			$model->attributes=$_POST['Question'];
-			if($model->save())
+			if($model->save() && $model->saveAttributes(array('update_user'=>Yii::app()->user->name,)))
 				$this->redirect(array('view','id'=>$model->id));
 		}
 

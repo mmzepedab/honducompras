@@ -66,11 +66,11 @@ class Question extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'title' => 'Title',
-			'answer' => 'Answer',
-			'create_time' => 'Create Time',
-			'create_user' => 'Create User',
-			'update_user' => 'Update User',
+			'title' => 'Pregunta',
+			'answer' => 'Respuesta',
+			'create_time' => 'Hora Creado',
+			'create_user' => 'Creado por',
+			'update_user' => 'Actualizado por',
 		);
 	}
 

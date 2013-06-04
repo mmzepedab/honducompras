@@ -135,10 +135,35 @@ div.view
 	border: 1px solid #C9E0ED;
 }
 
+div.view a
+{
+	font-weight: bold;
+}
+
+div.view a:link
+{
+	text-decoration: none;
+}
+
+div.view a:hover
+{
+	text-decoration: underline;
+}
+
 div.breadcrumbs
 {
 	font-size: 0.9em;
 	padding: 5px 20px;
+}
+
+div.breadcrumbs a:link
+{
+	text-decoration: none;
+}
+
+div.breadcrumbs a:hover
+{
+	text-decoration: underline;
 }
 
 div.breadcrumbs span

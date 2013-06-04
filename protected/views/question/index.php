@@ -3,16 +3,16 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Questions',
+	'Preguntas',
 );
 
 $this->menu=array(
-	array('label'=>'Create Question', 'url'=>array('create')),
-	array('label'=>'Manage Question', 'url'=>array('admin')),
+	array('label'=>'Crear Pregunta', 'url'=>array('create')),
+	array('label'=>'Administrar Preguntas', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Questions</h1>
+<h1>Preguntas</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
