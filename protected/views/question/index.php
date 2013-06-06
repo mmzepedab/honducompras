@@ -43,8 +43,6 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_view',
-	'enablePagination'=>YES,
-	'enableSorting'=>YES,
 	'emptyText'=>'No existe ningun registro',
 	'summaryText'=>'Mostrando {start}-{end} de un total de {count} resultados.',
 	'id'=>'ajaxListView',

@@ -4,15 +4,15 @@
 
 $this->breadcrumbs=array(
 	'Questions'=>array('index'),
-	'Create',
+	'Crear',
 );
 
 $this->menu=array(
-	array('label'=>'List Question', 'url'=>array('index')),
-	array('label'=>'Manage Question', 'url'=>array('admin')),
+	array('label'=>'Lista de Preguntas', 'url'=>array('index')),
+	array('label'=>'Administrar Pregunta', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create Question</h1>
+<h1>Crear Pregunta</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
