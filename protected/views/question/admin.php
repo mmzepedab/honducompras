@@ -29,8 +29,8 @@ $('.search-form form').submit(function(){
 <h1>Administrar Preguntas</h1>
 
 <p>
-Tu puedes utulizar estos caracteres para la busqueda(<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-o <b>=</b>) al principio de cada una de los valores de busqueda para especificar como hacer la comparacion que hayas realizado.
+Usted puede utilizar estos caracteres para realizar la búsqueda(<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
+o <b>=</b>) al principio de cada una de los campos de búsqueda para especificar como hacer la comparación.
 </p>
 
 <?php echo CHtml::link('Busqueda Avanzada','#',array('class'=>'search-button')); ?>
