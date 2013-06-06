@@ -10,7 +10,7 @@ $this->pageTitle=Yii::app()->name;
 
 <ul>
         <li><b>¿Qué es HonduCompras?</b></li>
-        <p align="justify">Mediante el Decreto Ejecutivo 010/2005 promulgado en octubre de 2005, se crea el Sistema de Información de Contratación y Adquisiciones del Estado de Honduras, “HonduCompras”,www.honducompras.gob.hn, el cual es el único medio por el que se difundirá y gestionará, a través de Internet, los procedimientos de contratación que celebren los órganos comprendidos en el ámbito de aplicación de la Ley de Contratación del Estado, para lo cual el Órgano Responsable de su administración establecerá los mecanismos, plazos y condiciones para la incorporación gradual de las entidades al Sistema.</p>
+        <p align="justify">Mediante el Decreto Ejecutivo 010/2005 promulgado en octubre de 2005, se crea el Sistema de Información de Contratación y Adquisiciones del Estado de Honduras, “HonduCompras”,<a href="www.honducompras.gob.hn">www.honducompras.gob.hn</a>, el cual es el único medio por el que se difundirá y gestionará, a través de Internet, los procedimientos de contratación que celebren los órganos comprendidos en el ámbito de aplicación de la Ley de Contratación del Estado, para lo cual el Órgano Responsable de su administración establecerá los mecanismos, plazos y condiciones para la incorporación gradual de las entidades al Sistema.</p>
 
         <li><b>¿Quién es el responsable por administrar HonduCompras?</b></li>
         <p align="justify">La Oficina Normativa de Contratación y Adquisiciones del Estado (ONCAE) será la entidad responsable por administrar HonduCompras.</p>
@@ -18,7 +18,4 @@ $this->pageTitle=Yii::app()->name;
 	
 </ul>
 
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+

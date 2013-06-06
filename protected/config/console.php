@@ -14,10 +14,10 @@ return array(
 		
 		// uncomment the following to use a MySQL database
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=honducompras',
+			'connectionString' => 'mysql:host=localhost;dbname=honducompras;unix_socket=/Applications/MAMP/tmp/mysql/mysql.sock',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '',
+			'password' => 'root',
 			'charset' => 'utf8',
 		),
 		
