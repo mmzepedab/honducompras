@@ -9,6 +9,7 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	array('label'=>'Crear Pregunta', 'url'=>array('create')),
 	array('label'=>'Administrar Preguntas', 'url'=>array('admin')),
+	array('label'=>'Exportar a Excel', 'url'=>array('toExcel')),
 );
 ?>
 
@@ -38,7 +39,6 @@ $this->menu=array(
     });"
 ); 
 ?>
-    
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
