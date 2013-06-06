@@ -41,6 +41,7 @@
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
+			'homeLink'=> CHtml::link('Inicio', Yii::app()->homeUrl),
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
 
@@ -49,9 +50,9 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
+		Honducompras sitio de informaciónn <?php echo date('Y'); ?><br/>
+		Todos los derechos reservados.<br/>
+        <?php echo CHtml::link('www.honducompras.gob.hn', 'http://www.honducompras.gob.hn'); ?>
 	</div><!-- footer -->
 
 </div><!-- page -->

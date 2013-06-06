@@ -120,9 +120,13 @@ class QuestionController extends Controller
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex()
+	public function actionIndex($string = '')
 	{
-		$dataProvider=new CActiveDataProvider('Question');
+		$criteria = new CDbCriteria();
+		if(strlen($string)>0)	
+			$criteria->addSearchCondition( 'title', $string, true, 'OR' );
+			
+		$dataProvider=new CActiveDataProvider('Question',array('criteria'=>$criteria,));
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
