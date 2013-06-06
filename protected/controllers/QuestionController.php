@@ -127,6 +127,7 @@ class QuestionController extends Controller
 			$criteria->addSearchCondition( 'title', $string, true, 'OR' );
 			
 		$dataProvider=new CActiveDataProvider('Question',array('criteria'=>$criteria,));
+		$dataProvider->pagination->pageSize = 10;
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
