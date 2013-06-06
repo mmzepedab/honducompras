@@ -12,14 +12,26 @@ body
 	margin-top: 0px;
 	margin-bottom: 5px;
 	background: white;
-	border: 1px solid #C9E0ED;
 }
 
 #header
 {
+	width: 100%;
 	margin: 0;
 	padding: 0;
-	border-top: 3px solid #C9E0ED;
+	background-color: #FFFFFF;
+}
+
+#header_text
+{
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 5px;
+	height: 34px;
+	color: #FFFFFF;
+	font-size: large;
+	text-align: right;
+	
 }
 
 #content
@@ -45,6 +57,11 @@ body
 {
 	padding: 10px 20px;
 	font-size: 200%;
+	display: block;
+	width: 235px;
+	height: 54px;
+	background-image: url(../images/logo.jpg);
+	background-repeat: no-repeat;
 }
 
 #mainmenu

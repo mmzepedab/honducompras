@@ -50,10 +50,10 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=honducompras;unix_socket=/Applications/MAMP/tmp/mysql/mysql.sock',
+			'connectionString' => 'mysql:host=localhost;dbname=honducompras',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'root',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 		
