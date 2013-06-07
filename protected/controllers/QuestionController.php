@@ -28,7 +28,7 @@ class QuestionController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','toExcel'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -159,7 +159,7 @@ class QuestionController extends Controller
 	{
 		$model=Question::model()->findByPk($id);
 		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+			throw new CHttpException(404,'La pagina solicitada no existe.');
 		return $model;
 	}
 
@@ -174,5 +174,18 @@ class QuestionController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+	
+	public function actionToExcel(){
+		$dataProvider=new CActiveDataProvider('Question');
+		$this->widget('application.widgets.EExcelView', array(
+     'dataProvider'=> $dataProvider,
+	 'grid_mode'=>'export',
+     'title'=>'Titulo',
+     'autoWidth'=>false,
+	 'filename'=>'report',
+     'exportType'=>'Excel2007',
+      ));
+		Yii::app()->end();
 	}
 }
