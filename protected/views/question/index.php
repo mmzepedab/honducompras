@@ -9,7 +9,8 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	array('label'=>'Crear Pregunta', 'url'=>array('create')),
 	array('label'=>'Administrar Preguntas', 'url'=>array('admin')),
-	array('label'=>'Exportar a Excel', 'url'=>array('toExcel')),
+	array('label'=>'Exportar a Excel', 'url'=>array('toExcel','string'=>(isset($_GET['string'])) ? $_GET['string'] : '', array('id'=>'string'))),
+	
 );
 ?>
 
@@ -21,7 +22,7 @@ $this->menu=array(
     . CHtml::endForm();
 	?>
     
-<?php Yii::app()->clientScript->registerScript('search',
+<?php /* Yii::app()->clientScript->registerScript('search',
     "var ajaxUpdateTimeout;
     var ajaxRequest;
     $('input#string').keyup(function(){
@@ -37,13 +38,19 @@ $this->menu=array(
 // this is the delay
         300);
     });"
-); 
+); */ 
 ?>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_view',
 	'emptyText'=>'No existe ningun registro',
-	'summaryText'=>'Mostrando {start}-{end} de un total de {count} resultados.',
+	'summaryText'=>'Mostrando <b>{start}-{end}</b> de un total de <b>{count}</b> resultados.',
 	'id'=>'ajaxListView',
+	'sorterHeader'=>'Ordenar por:',
+	'enableSorting' => true,
+        'sortableAttributes'=>array(
+            'create_time'=>'Fecha',
+			'title'=>'Pregunta',
+        ),
 )); ?>

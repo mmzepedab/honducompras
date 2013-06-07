@@ -70,7 +70,11 @@ class QuestionController extends Controller
 		if(isset($_POST['Question']))
 		{
 			$model->attributes=$_POST['Question'];
-			if($model->save() && $model->saveAttributes(array('create_user'=>Yii::app()->user->name,)) && $model->saveAttributes(array('update_user'=>Yii::app()->user->name,)))
+			if($model->save() && 
+				$model->saveAttributes(array('create_user'=>Yii::app()->user->name,)) && 
+				$model->saveAttributes(array('update_user'=>Yii::app()->user->name,)) &&
+				$model->saveAttributes(array('create_time'=>Yii::app()->Date->now(),))					
+			)
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
@@ -127,7 +131,7 @@ class QuestionController extends Controller
 			$criteria->addSearchCondition( 'title', $string, true, 'OR' );
 			
 		$dataProvider=new CActiveDataProvider('Question',array('criteria'=>$criteria,));
-		$dataProvider->pagination->pageSize = 10;
+		$dataProvider->pagination->pageSize = 5;
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -176,14 +180,19 @@ class QuestionController extends Controller
 		}
 	}
 	
-	public function actionToExcel(){
-		$dataProvider=new CActiveDataProvider('Question');
+	public function actionToExcel($string){
+		$criteria = new CDbCriteria();
+		if(strlen($string)>0)	
+			$criteria->addSearchCondition( 'title', $string, true, 'OR' );			
+		$dataProvider=new CActiveDataProvider('Question',array('criteria'=>$criteria,));
+		
+		
 		$this->widget('application.widgets.EExcelView', array(
      'dataProvider'=> $dataProvider,
 	 'grid_mode'=>'export',
      'title'=>'Titulo',
      'autoWidth'=>false,
-	 'filename'=>'report',
+	 'filename'=>'ReportePreguntas'.Yii::app()->Date->now(),
      'exportType'=>'Excel2007',
       ));
 		Yii::app()->end();

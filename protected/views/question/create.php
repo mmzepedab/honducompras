@@ -3,7 +3,7 @@
 /* @var $model Question */
 
 $this->breadcrumbs=array(
-	'Questions'=>array('index'),
+	'Preguntas'=>array('index'),
 	'Crear',
 );
 
