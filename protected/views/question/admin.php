@@ -3,7 +3,7 @@
 /* @var $model Question */
 
 $this->breadcrumbs=array(
-	'Questions'=>array('index'),
+	'Preguntas'=>array('index'),
 	'Administrar',
 );
 
@@ -29,8 +29,8 @@ $('.search-form form').submit(function(){
 <h1>Administrar Preguntas</h1>
 
 <p>
-Usted puede utilizar estos caracteres para realizar la búsqueda(<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-o <b>=</b>) al principio de cada una de los campos de búsqueda para especificar como hacer la comparación.
+Usted puede utilizar estos caracteres para realizar la busqueda(<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
+o <b>=</b>) al principio de cada una de los campos de busqueda para especificar como hacer la comparacion.
 </p>
 
 <?php echo CHtml::link('Busqueda Avanzada','#',array('class'=>'search-button')); ?>
@@ -55,4 +55,5 @@ o <b>=</b>) al principio de cada una de los campos de búsqueda para especificar 
 			'class'=>'CButtonColumn',
 		),
 	),
+	'summaryText'=>'Mostrando <b>{start}-{end}</b> de un total de <b>{count}</b> resultados.',
 )); ?>
