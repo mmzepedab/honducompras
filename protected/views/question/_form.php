@@ -15,6 +15,12 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
+        <div class="row">
+		<?php echo $form->labelEx($model,'department_id'); ?>
+                <?php echo $form->dropDownList($model,'department_id',$model->getDeptOptions(), array('prompt'=>'Seleccionar uno...')); ?>
+		<?php echo $form->error($model,'department_id'); ?>
+	</div>
+        
 	<div class="row">
 		<?php echo $form->labelEx($model,'title'); ?>
 		<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>255)); ?>

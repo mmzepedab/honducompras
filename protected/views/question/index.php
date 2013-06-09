@@ -19,6 +19,7 @@ $this->menu=array(
 <?php echo CHtml::beginForm(CHtml::normalizeUrl(array('question/index')), 'get', array('id'=>'filter-form'))
     . CHtml::textField('string', (isset($_GET['string'])) ? $_GET['string'] : '', array('id'=>'string'))
     . CHtml::submitButton('Buscar', array('name'=>''))
+    . CHtml::link('Mostrar todos los resultados',array('question/index'),array('style'=>'font-size:smaller;text-decoration:none;'))
     . CHtml::endForm();
 	?>
     

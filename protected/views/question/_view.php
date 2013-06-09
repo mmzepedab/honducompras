@@ -11,8 +11,9 @@
   		<br />
        	 <div align="justify"><b>R:/ </b><?php echo CHtml::encode($data->answer); ?></div>
         <br />
-        <div align="right" style="font-size: smaller; color:#999;">        	
-        	<b>Creado por:</b> <?php echo CHtml::encode($data->create_user); ?>
+        <div align="right" style="font-size: smaller; color:#999;">    
+            <b> &nbsp;&nbsp;&nbsp; Departamento:</b> <?php echo CHtml::encode($data->getDeptText()); ?>
+        	<b> &nbsp;&nbsp;&nbsp; Creado por:</b> <?php echo CHtml::encode($data->create_user); ?>
         	<b> &nbsp;&nbsp;&nbsp; Fecha creado:</b> <?php echo CHtml::encode($data->create_time); ?>
         </div>
     </div>

@@ -10,9 +10,18 @@
  * @property string $create_time
  * @property string $create_user
  * @property string $update_user
+ * @property string $department_id
  */
 class Question extends CActiveRecord
 {
+        const DEPT_OTHER = 0;
+        const DEPT_CONVENIO_MARCO = 1;
+        const DEPT_CCORPO = 2;
+        const DEPT_LEGAL = 3;
+        const DEPT_REGISTRO_PROVEEDORES = 4;
+        const DEPT_MESA_AYUDA = 5;
+    
+    
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -39,7 +48,8 @@ class Question extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, answer', 'required'),
+			array('title, answer, department_id', 'required'),
+                        array('department_id', 'numerical', 'integerOnly'=>true),
 			array('title, create_user, update_user', 'length', 'max'=>255),
 			array('create_time', 'safe'),
 			// The following rule is used by search().
@@ -71,6 +81,7 @@ class Question extends CActiveRecord
 			'create_time' => 'Hora Creado',
 			'create_user' => 'Creado por',
 			'update_user' => 'Actualizado por',
+                        'department_id' => 'Departamento',
 		);
 	}
 
@@ -96,4 +107,21 @@ class Question extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
+        public function getDeptOptions(){
+            return array(               
+                self::DEPT_CONVENIO_MARCO=>'Convenio Marco',
+                self::DEPT_CCORPO=>'Compras Coorporativas',
+                self::DEPT_LEGAL=>'Legal',
+                self::DEPT_REGISTRO_PROVEEDORES=>'Registro de proveedores',
+                self::DEPT_MESA_AYUDA=>'Mesa de ayuda',                
+                self::DEPT_OTHER=>'Otro', 
+            );            
+        }
+        
+        public function getDeptText(){
+            $deptOptions = $this->deptOptions;
+            return isset($deptOptions[$this->department_id]) ? $deptOptions[$this->department_id] : "Sin asignar";
+            
+        }
 }

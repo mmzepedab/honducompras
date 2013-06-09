@@ -57,12 +57,12 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=honducompras',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
-			'charset' => 'utf8',
-		),
+                            'connectionString' => 'mysql:host=localhost;dbname=honducompras;unix_socket=/Applications/MAMP/tmp/mysql/mysql.sock',
+                            'emulatePrepare' => true,
+                            'username' => 'root',
+                            'password' => 'root',
+                            'charset' => 'utf8',
+                    ),
 		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors

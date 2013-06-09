@@ -23,8 +23,13 @@ $this->menu=array(
 	'attributes'=>array(
 		'title',
 		'answer',
+                array(
+                    'name'=>'department_id',
+                    'value'=>CHtml::encode($model->getDeptText())
+                ),
 		'create_time',
 		'create_user',
 		'update_user',
+                
 	),
 )); ?>
