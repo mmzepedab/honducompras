@@ -70,11 +70,7 @@ class QuestionController extends Controller
 		if(isset($_POST['Question']))
 		{
 			$model->attributes=$_POST['Question'];
-			if($model->save() && 
-				$model->saveAttributes(array('create_user'=>Yii::app()->user->name,)) && 
-				$model->saveAttributes(array('update_user'=>Yii::app()->user->name,)) &&
-				$model->saveAttributes(array('create_time'=>Yii::app()->Date->now(),))					
-			)
+			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
@@ -99,7 +95,6 @@ class QuestionController extends Controller
 		{
 			$model->attributes=$_POST['Question'];
                         if($model->save()){
-                                $model->setAttributes(array('update_user'=>Yii::app()->user->name,));
 				$this->redirect(array('view','id'=>$model->id));
                         }
 		}
@@ -126,11 +121,14 @@ class QuestionController extends Controller
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex($string = '')
+	public function actionIndex($string = '',$dId = '')
 	{
 		$criteria = new CDbCriteria();
-		if(strlen($string)>0)	
-			$criteria->addSearchCondition( 'title', $string, true, 'OR' );
+		
+                
+                    $criteria->addSearchCondition( 'title', $string, true, 'AND' );
+                    $criteria->addSearchCondition( 'department_id', $dId, true, 'AND' );
+                
 			
 		$dataProvider=new CActiveDataProvider('Question',array('criteria'=>$criteria,));
 		$dataProvider->pagination->pageSize = 5;

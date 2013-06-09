@@ -16,8 +16,17 @@ $this->menu=array(
 
 <h1>Preguntas</h1>
 
-<?php echo CHtml::beginForm(CHtml::normalizeUrl(array('question/index')), 'get', array('id'=>'filter-form'))
+
+<?php 
+    $defaultValue = isset($_GET['dId']) ? $_GET['dId'] : 'prompt';
+    echo CHtml::beginForm(CHtml::normalizeUrl(array('question/index')), 'get', array('id'=>'filter-form'))
     . CHtml::textField('string', (isset($_GET['string'])) ? $_GET['string'] : '', array('id'=>'string'))
+    . CHtml::dropDownList('dId', 
+            'promt', 
+            Question::model()->getDeptOptions(), 
+            array('prompt'=>'Por departamento...',
+                            'options'=>array($defaultValue=>array('selected'=>'selected'))
+                            ))
     . CHtml::submitButton('Buscar', array('name'=>''))
     . CHtml::link('Mostrar todos los resultados',array('question/index'),array('style'=>'font-size:smaller;text-decoration:none;'))
     . CHtml::endForm();
