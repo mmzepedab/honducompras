@@ -1,19 +1,7 @@
 <?php
 
-class QuestionController extends Controller
+class IssueController extends Controller
 {
-        public function actions()
-	{
-	    return array(
-	        'quote'=>array(
-	            'class'=>'CWebServiceAction',
-		    'classMap'=>array(
-			'Question'=>'Question',
-		    )
-	        ),
-	    );
-	}
-    
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
@@ -40,7 +28,7 @@ class QuestionController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','toExcel','quote'),
+				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -74,14 +62,14 @@ class QuestionController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Question;
+		$model=new Issue;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Question']))
+		if(isset($_POST['Issue']))
 		{
-			$model->attributes=$_POST['Question'];
+			$model->attributes=$_POST['Issue'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -103,12 +91,11 @@ class QuestionController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Question']))
+		if(isset($_POST['Issue']))
 		{
-			$model->attributes=$_POST['Question'];
-                        if($model->save()){
+			$model->attributes=$_POST['Issue'];
+			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
-                        }
 		}
 
 		$this->render('update',array(
@@ -133,17 +120,9 @@ class QuestionController extends Controller
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex($string = '',$dId = '')
+	public function actionIndex()
 	{
-		$criteria = new CDbCriteria();
-		
-                
-                    $criteria->addSearchCondition( 'title', $string, true, 'AND' );
-                    $criteria->addSearchCondition( 'department_id', $dId, true, 'AND' );
-                
-			
-		$dataProvider=new CActiveDataProvider('Question',array('criteria'=>$criteria,));
-		$dataProvider->pagination->pageSize = 5;
+		$dataProvider=new CActiveDataProvider('Issue');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -154,10 +133,10 @@ class QuestionController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Question('search');
+		$model=new Issue('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Question']))
-			$model->attributes=$_GET['Question'];
+		if(isset($_GET['Issue']))
+			$model->attributes=$_GET['Issue'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -168,54 +147,27 @@ class QuestionController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Question the loaded model
+	 * @return Issue the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Question::model()->findByPk($id);
+		$model=Issue::model()->findByPk($id);
 		if($model===null)
-			throw new CHttpException(404,'La pagina solicitada no existe.');
+			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Question $model the model to be validated
+	 * @param Issue $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='question-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='issue-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
 	}
-	
-	public function actionToExcel($string){
-		$criteria = new CDbCriteria();
-		if(strlen($string)>0)	
-			$criteria->addSearchCondition( 'title', $string, true, 'OR' );			
-		$dataProvider=new CActiveDataProvider('Question',array('criteria'=>$criteria,));
-		
-		
-		$this->widget('application.widgets.EExcelView', array(
-     'dataProvider'=> $dataProvider,
-	 'grid_mode'=>'export',
-     'title'=>'Titulo',
-     'autoWidth'=>false,
-	 'filename'=>'ReportePreguntas'.Yii::app()->Date->now(),
-     'exportType'=>'Excel2007',
-      ));
-		Yii::app()->end();
-	}
-        
-     /**
-     * @return Question[] a list of posts
-     * @soap
-     */
-    public function getQuestions()
-    {
-        return Question::model()->findAll();
-    }
 }

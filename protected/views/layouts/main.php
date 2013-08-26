@@ -23,7 +23,7 @@
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo"></div>
+            <a href="./"><div id="logo"></div></a>
 	</div><!-- header -->
 
 	<div id="mainmenu">
