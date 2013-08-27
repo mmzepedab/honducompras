@@ -23,8 +23,7 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'ticket_number',
-		'assigned_to',
-		'institution_name',
+                array('name'=>'Asignado a','value'=>isset($model->user)?CHtml::encode($model->user->concatened):"unknown"),		'institution_name',
 		'contact_number',
 		'contact_email',
 		'status',

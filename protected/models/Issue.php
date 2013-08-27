@@ -45,7 +45,7 @@ class Issue extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('ticket_number, assigned_to, institution_name, contact_number, contact_email, status', 'required'),
+			array('ticket_number, assigned_to, institution_name, contact_number, contact_email, status, category_id', 'required'),
 			array('ticket_number, assigned_to, institution_name, contact_number, contact_email, status, create_user, update_user', 'length', 'max'=>255),
 			array('create_time', 'safe'),
 			// The following rule is used by search().
@@ -62,6 +62,8 @@ class Issue extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+                    'user' => array(self::BELONGS_TO, 'User', 'assigned_to'),
+                    'category' => array(self::BELONGS_TO, 'Category', 'category_id'),
 		);
 	}
 
@@ -72,6 +74,7 @@ class Issue extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+                        'category_id' => 'Categoria',
 			'ticket_number' => 'Numero de ticket',
 			'assigned_to' => 'Asignado a',
 			'institution_name' => 'Institucion',
@@ -130,6 +133,14 @@ class Issue extends CActiveRecord
                 if($this->isNewRecord){
                     $this->create_time = Yii::app()->Date->now();
                     $this->create_user = Yii::app()->user->name;
+                    //Add oder_number to database 
+                    $connection = Yii::app()->db;
+                    $command = "SELECT MAX(`order_number`) as order_number FROM tbl_issue WHERE MONTH(`create_time`) = MONTH(CURDATE());"; 
+                    $row=$connection->createCommand($command)->queryRow();
+                    $this->order_number = (isset($row['order_number']) ? $row['order_number'] : 0) + 1;
+                    
+                    //Add Ticket Numbet to database
+                    $this->ticket_number = date("m")."-".date("y")."-".str_pad(((isset($row['order_number']) ? $row['order_number'] : 0) + 1), 4, "0", STR_PAD_LEFT); 
                 }else{                    
                     $this->update_user = Yii::app()->user->name;
                 }
@@ -138,5 +149,32 @@ class Issue extends CActiveRecord
                 return false;
             
         }
+        
+        
+        
+        public function getUsers()
+        {
+                $criteria=new CDbCriteria;
+                $criteria->select='id,first_name,last_name'; 
+
+                $models = User::model()->findAll($criteria);
+ 
+                $list = CHtml::listData($models, 'id', 'concatened');
+                
+                return $list;
+        }
+        
+        public function getCategories()
+        {
+                $criteria=new CDbCriteria;
+                $criteria->select='id,name'; 
+
+                $models = Category::model()->findAll($criteria);
+ 
+                $list = CHtml::listData($models, 'id', 'name');
+                
+                return $list;
+        }
+        
         
 }

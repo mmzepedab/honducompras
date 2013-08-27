@@ -14,7 +14,15 @@
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-
+        <script type="text/javascript">
+            //alert('my script');
+        </script>
+        <div class="row">
+		<?php echo $form->labelEx($model,'category_id'); ?>
+		<?php echo $form->dropDownList($model,'category_id',$model->getCategories()); ?>
+		<?php echo $form->error($model,'category_id'); ?>
+	</div>
+        
 	<div class="row">
 		<?php echo $form->labelEx($model,'ticket_number'); ?>
 		<?php echo $form->textField($model,'ticket_number',array('size'=>60,'maxlength'=>255)); ?>
@@ -22,8 +30,10 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'assigned_to'); ?>
-		<?php echo $form->textField($model,'assigned_to',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->labelEx($model,'assigned_to'); ?>  
+            
+                <?php echo $form->dropDownList($model,'assigned_to',$model->getUsers()); ?>
+		<?php /* echo $form->textField($model,'assigned_to',array('size'=>60,'maxlength'=>255)); */ ?> 
 		<?php echo $form->error($model,'assigned_to'); ?>
 	</div>
 

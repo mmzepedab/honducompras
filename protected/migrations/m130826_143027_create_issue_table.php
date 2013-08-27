@@ -8,7 +8,7 @@ class m130826_143027_create_issue_table extends CDbMigration
 			array(
 				'id'=>'pk',
 				'ticket_number'=>'string NOT NULL',
-				'assigned_to'=>'string NOT NULL',
+				'assigned_to'=>'int(11) DEFAULT NULL',
                                 'institution_name'=>'string NOT NULL',
                                 'contact_number'=>'string NOT NULL',
                                 'contact_email'=>'string NOT NULL',
