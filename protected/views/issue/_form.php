@@ -23,11 +23,6 @@
 		<?php echo $form->error($model,'category_id'); ?>
 	</div>
         
-	<div class="row">
-		<?php echo $form->labelEx($model,'ticket_number'); ?>
-		<?php echo $form->textField($model,'ticket_number',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'ticket_number'); ?>
-	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'assigned_to'); ?>  

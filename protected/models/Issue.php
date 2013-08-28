@@ -45,7 +45,7 @@ class Issue extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('ticket_number, assigned_to, institution_name, contact_number, contact_email, status, category_id', 'required'),
+			array('assigned_to, institution_name, contact_number, contact_email, status, category_id', 'required'),
 			array('ticket_number, assigned_to, institution_name, contact_number, contact_email, status, create_user, update_user', 'length', 'max'=>255),
 			array('create_time', 'safe'),
 			// The following rule is used by search().
@@ -81,6 +81,7 @@ class Issue extends CActiveRecord
 			'contact_number' => 'Telefono',
 			'contact_email' => 'Correo',
 			'status' => 'Estado',
+                        'statusText' => 'Estado',
 			'create_time' => 'Hora creado',
 			'create_user' => 'Creado por',
 			'update_user' => 'Actualizado por',

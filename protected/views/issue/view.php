@@ -26,7 +26,7 @@ $this->menu=array(
                 array('name'=>'Asignado a','value'=>isset($model->user)?CHtml::encode($model->user->concatened):"unknown"),		'institution_name',
 		'contact_number',
 		'contact_email',
-		'status',
+		'statusText',
 		'create_time',
 		'create_user',
 		'update_user',
