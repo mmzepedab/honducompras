@@ -29,7 +29,8 @@
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'Inicio', 'url'=>array('/site/index')),
+				array('label'=>'Inicio', 'url'=>array('/site/index')),                           
+				array('label'=>'Consultas', 'url'=>('?r=issue')),
 				array('label'=>'Preguntas Frecuentes', 'url'=>('?r=question')),
 				array('label'=>'Acerca de', 'url'=>array('/site/page', 'view'=>'about')),
 				array('label'=>'Contacto', 'url'=>array('/site/contact')),

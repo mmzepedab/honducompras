@@ -11,6 +11,10 @@
 	<?php echo CHtml::link(CHtml::encode($data->ticket_number), array('view', 'id'=>$data->id)); ?>
 	<br />
 
+        <b><?php echo CHtml::encode($data->getAttributeLabel('category_id')); ?>:</b>
+	<?php echo CHtml::encode($data->getCategory($data->category_id)); ?>
+	<br />
+        
 	<b><?php echo CHtml::encode($data->getAttributeLabel('assigned_to')); ?>:</b>
 	<?php echo CHtml::encode($data->user->concatened); ?>
 	<br />

@@ -3,8 +3,8 @@
 /* @var $model Issue */
 
 $this->breadcrumbs=array(
-	'Issues'=>array('index'),
-	'Create',
+	'Consultas'=>array('index'),
+	'Crear',
 );
 
 $this->menu=array(
@@ -13,6 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create Issue</h1>
+<h1>Crear consulta</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

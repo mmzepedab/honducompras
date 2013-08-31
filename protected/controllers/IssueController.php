@@ -70,8 +70,40 @@ class IssueController extends Controller
 		if(isset($_POST['Issue']))
 		{
 			$model->attributes=$_POST['Issue'];
-			if($model->save())
+			if($model->save()){
+                                    $to      = $model->contact_email. ', '; // note the comma
+                                    $to .= 'cconcae@gmail.com';
+                                    $subject = 'Ticket '.$model->ticket_number.' Mesa de Ayuda ONCAE';
+
+                                    // message
+                                    $message = '
+                                    <html>
+                                    <head>
+                                      <title>'.$model->ticket_number.' </title>
+                                    </head>
+                                    <body>
+                                      <p>Se ha creado el ticket <b>'.$model->ticket_number.'</b> se le asigno al Oficial de Mesa de Ayuda <b>'.$model->user->concatened.'</b> </p>
+                                      </br>
+                                      </br>
+                                      <p>Puede ver el estado de su consulta en http://www.oncae.gob.hn/honducompras</p>
+                                      <p>Para dar seguimiento a su consulta via telefono llamar al 2238-7827</p>
+                                    </body>
+                                    </html>
+                                    ';
+
+                                    // To send HTML mail, the Content-type header must be set
+                                    $headers  = 'MIME-Version: 1.0' . "\r\n";
+                                    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                                    
+                                    
+                                    $headers .= 'From: Mesa de ayuda ONCAE' . "\r\n" .
+                                                'Reply-To: cconcae@gmail.com' . "\r\n" .
+                                                'X-Mailer: PHP/' . phpversion();
+                                    mail($to, $subject, $message, $headers);
+                            
+                            
 				$this->redirect(array('view','id'=>$model->id));
+                        }
 		}
 
 		$this->render('create',array(

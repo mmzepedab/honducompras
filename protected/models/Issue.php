@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'tbl_issue':
  * @property integer $id
  * @property string $ticket_number
+ * @property string $category_id
  * @property string $assigned_to
  * @property string $institution_name
  * @property string $contact_number
@@ -177,5 +178,13 @@ class Issue extends CActiveRecord
                 return $list;
         }
         
+        public function getCategory($id){
+            $criteria=new CDbCriteria;
+            $criteria->select='name'; 
+            $criteria->condition = "id=$id";
+            $row = Category::model()->find($criteria); 
+            return ($row['name']);
+            
+        }
         
 }
