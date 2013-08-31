@@ -87,6 +87,18 @@ class User extends CActiveRecord
 		));
 	}
         
+        
+        public function getHelpDeskUsers(){
+            return array(               
+                1=>'Mario Zepeda',
+                2=>'Marlon Zuniga',
+                3=>'Alejandra Fonseca',
+                4=>'Manuel Murillo',
+                5=>'Wendy Cuellar',                
+                6=>'Omar Valladares', 
+            );            
+        }
+        
         public function getConcatened()
         {
                 return $this->first_name.' '.$this->last_name;

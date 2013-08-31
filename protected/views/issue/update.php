@@ -4,8 +4,8 @@
 
 $this->breadcrumbs=array(
 	'Consulta'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	$model->ticket_number=>array('view','id'=>$model->id),
+	'Actualizar',
 );
 
 $this->menu=array(
@@ -16,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Actualizar consulta <?php echo $model->id; ?></h1>
+<h1>Actualizar ticket <?php echo $model->ticket_number; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

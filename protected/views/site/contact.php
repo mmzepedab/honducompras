@@ -5,11 +5,11 @@
 
 $this->pageTitle=Yii::app()->name . ' - Contact Us';
 $this->breadcrumbs=array(
-	'Contact',
+	'Contacto',
 );
 ?>
 
-<h1>Contact Us</h1>
+<h1>Contáctenos</h1>
 
 <?php if(Yii::app()->user->hasFlash('contact')): ?>
 
@@ -20,7 +20,7 @@ $this->breadcrumbs=array(
 <?php else: ?>
 
 <p>
-If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
+Si tiene cualquier consulta puede contactarnos mediante el siguiente formulario
 </p>
 
 <div class="form">

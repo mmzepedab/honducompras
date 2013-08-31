@@ -1,9 +1,9 @@
 <?php
 /* @var $this SiteController */
 
-$this->pageTitle=Yii::app()->name . ' - About';
+$this->pageTitle=Yii::app()->name . ' - Acerca de';
 $this->breadcrumbs=array(
-	'About',
+	'Acerca de',
 );
 ?>
 <h1>About</h1>

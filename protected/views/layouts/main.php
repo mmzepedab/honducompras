@@ -26,14 +26,17 @@
             <a href="./"><div id="logo"></div></a>
 	</div><!-- header -->
 
-	<div id="mainmenu">
-		<?php $this->widget('zii.widgets.CMenu',array(
+	<div id="mainMbMenu">
+		<?php $this->widget('application.extensions.mbmenu.MbMenu',array(
 			'items'=>array(
-				array('label'=>'Inicio', 'url'=>array('/site/index')),                           
-				array('label'=>'Consultas', 'url'=>('?r=issue')),
-				array('label'=>'Preguntas Frecuentes', 'url'=>('?r=question')),
+				array('label'=>'Inicio', 'url'=>array('/site/index')), 
+                                array('label'=>'Mesa de ayuda', 'url'=>('?r=issue'),'items'=>array(
+                                    array('label'=>'Consultas', 'url'=>array('issue/index')),
+                                    array('label'=>'Estadisticas', 'url'=>array('stats/index')),
+                                    array('label'=>'Preguntas Frecuentes', 'url'=>array('question/index')),                                   
+                                    array('label'=>'Contacto', 'url'=>array('/site/contact')),
+                                )),
 				array('label'=>'Acerca de', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contacto', 'url'=>array('/site/contact')),
 				array('label'=>'Inicio de sesion', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Cerrar sesion ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
 			),
