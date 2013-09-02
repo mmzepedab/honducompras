@@ -35,12 +35,24 @@
                                     array('label'=>'Estadisticas', 'url'=>array('stats/index')),
                                     array('label'=>'Preguntas Frecuentes', 'url'=>array('question/index')),                                   
                                     array('label'=>'Contacto', 'url'=>array('/site/contact')),
+                                )),			
+                                array('label'=>'Acerca de', 'url'=>array('/site/page', 'view'=>'about')),
+                                array('label'=>'Administracion', 'url'=>array('/site/page'), 'visible'=>(Yii::app()->user->name == 'admin') , 'items'=>array(
+                                    array('label'=>'Usuarios', 'url'=>array('user/index')),
+                                    
+                                    array('label'=>'Consultas', 'url'=>array('user/index'),'items'=>array(
+                                        array('label'=>'Categorias', 'url'=>array('category/index')),
+                                        array('label'=>'Metodos de recepcion', 'url'=>array('issueReceptionType/index')),
+                                    )),
+                                    
+                                    
+                                    
                                 )),
-				array('label'=>'Acerca de', 'url'=>array('/site/page', 'view'=>'about')),
 				array('label'=>'Inicio de sesion', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Cerrar sesion ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
-			),
-		)); ?>
+			
+		),
+                )); ?>
 	</div><!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
