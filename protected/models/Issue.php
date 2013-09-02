@@ -46,7 +46,7 @@ class Issue extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('assigned_to, institution_name, contact_number, contact_email, status, category_id', 'required'),
+			array('assigned_to, institution_name, contact_number, contact_email, status, category_id, reception_type_id', 'required'),
 			array('ticket_number, assigned_to, institution_name, contact_number, contact_email, status, create_user, update_user', 'length', 'max'=>255),
 			array('create_time', 'safe'),
 			// The following rule is used by search().
@@ -65,6 +65,7 @@ class Issue extends CActiveRecord
 		return array(
                     'user' => array(self::BELONGS_TO, 'User', 'assigned_to'),
                     'category' => array(self::BELONGS_TO, 'Category', 'category_id'),
+                    'reception_type' => array(self::BELONGS_TO, 'IssueReceptionType', 'reception_type_id'),
 		);
 	}
 
@@ -86,6 +87,7 @@ class Issue extends CActiveRecord
 			'create_time' => 'Hora creado',
 			'create_user' => 'Creado por',
 			'update_user' => 'Actualizado por',
+                        'reception_type_id' => 'Metodo de recepcion',
 		);
 	}
 
@@ -185,6 +187,18 @@ class Issue extends CActiveRecord
             $row = Category::model()->find($criteria); 
             return ($row['name']);
             
+        }
+        
+        public function getReceptionTypes()
+        {
+                $criteria=new CDbCriteria;
+                $criteria->select='id,name'; 
+
+                $models = IssueReceptionType::model()->findAll($criteria);
+ 
+                $list = CHtml::listData($models, 'id', 'name');
+                
+                return $list;
         }
         
 }

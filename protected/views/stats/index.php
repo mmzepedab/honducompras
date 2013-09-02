@@ -6,8 +6,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Rendimiento por oficial', 'url'=>array('index')),
-	array('label'=>'Crear consultas', 'url'=>array('create')),
+	array('label'=>'Rendimiento por oficial', 'url'=>array('stats/index')),
+	array('label'=>'Consultas por area', 'url'=>array('stats/areaStats')),
         array('label'=>'Administrar consultas', 'url'=>array('admin')),
 );
 
@@ -52,7 +52,7 @@ $this->menu=array(
 
 
 <h1><?php echo 'Rendimiento'  ?></h1>
-<h3><?php echo '<b>Total tickets:</b> '. ($openedTickets + $closedTickets) .' - '.$openedTickets.'/'.$closedTickets.'(Abiertos/Cerrados)'   ?></h3>
+<h3><?php echo '<b>Total tickets:</b> '. ($openedTickets + $closedTickets) .' <i>('.$openedTickets.' Abiertos / '.$closedTickets.' Cerrados)</i>'   ?></h3>
 
 
 Filtrar datos:

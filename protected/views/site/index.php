@@ -2,6 +2,14 @@
 /* @var $this SiteController */
 
 $this->pageTitle=Yii::app()->name;
+
+$this->menu=array(
+	array('label'=>'Consultas', 'url'=>array('issue/index')),
+	array('label'=>'Estadisticas', 'url'=>array('stats/index')),
+        array('label'=>'Preguntas frecuentes', 'url'=>array('question/index')),
+        array('label'=>'Contactenos', 'url'=>array('contact/index')),
+);
+
 ?>
 
 <h1>Bienvenido a <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>

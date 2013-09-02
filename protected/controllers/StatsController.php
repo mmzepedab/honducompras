@@ -12,6 +12,11 @@ class StatsController extends Controller
 	{
 		$this->render('index');
 	}
+        
+        public function actionAreaStats()
+	{
+		$this->render('areaStats');
+	}
 
 	// Uncomment the following methods and override them if needed
 	/*

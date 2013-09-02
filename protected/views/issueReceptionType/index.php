@@ -3,16 +3,16 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Issue Reception Types',
+	'Metodos de recepcion de consultas',
 );
 
 $this->menu=array(
-	array('label'=>'Create IssueReceptionType', 'url'=>array('create')),
-	array('label'=>'Manage IssueReceptionType', 'url'=>array('admin')),
+	array('label'=>'Crear metodos de recepcion', 'url'=>array('create')),
+	array('label'=>'Administrar metodos de recepcion', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Issue Reception Types</h1>
+<h1>Métodos de recepción de consultas</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

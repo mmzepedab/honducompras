@@ -65,7 +65,7 @@ class IssueReceptionType extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
+			'name' => 'Nombre',
 		);
 	}
 
@@ -87,4 +87,6 @@ class IssueReceptionType extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
+        
 }

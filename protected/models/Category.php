@@ -61,7 +61,7 @@ class Category extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
+			'name' => 'Nombre',
 		);
 	}
 
@@ -83,4 +83,14 @@ class Category extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
+        public function getCategories(){
+            return array(               
+                1=>'Honducompras',
+                2=>'Catalogo Electronico',
+                3=>'Legal',
+                4=>'PACC',
+                5=>'Registro de proveedores',
+            );            
+        }
 }

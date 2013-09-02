@@ -20,6 +20,12 @@
 		<?php echo $form->error($model,'category_id'); ?>
 	</div>
         
+        <div class="row">
+		<?php echo $form->labelEx($model,'reception_type_id'); ?>
+		<?php echo $form->dropDownList($model,'reception_type_id',$model->getReceptionTypes()); ?>
+		<?php echo $form->error($model,'reception_type_id'); ?>
+	</div>
+        
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'assigned_to'); ?>  
