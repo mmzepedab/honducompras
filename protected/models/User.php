@@ -5,8 +5,12 @@
  *
  * The followings are the available columns in table 'tbl_user':
  * @property integer $id
+ * @property string $username
+ * @property string $email
  * @property string $first_name
  * @property string $last_name
+ * @property integer $is_help_desk
+ * @property string $password_hash
  */
 class User extends CActiveRecord
 {
@@ -36,8 +40,8 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('first_name, last_name', 'required'),
-			array('first_name, last_name', 'length', 'max'=>255),
+			array('first_name, last_name, username, email, password_hash', 'required'),
+			array('first_name, last_name, username, email', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, first_name, last_name', 'safe', 'on'=>'search'),
@@ -62,8 +66,12 @@ class User extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'first_name' => 'First Name',
-			'last_name' => 'Last Name',
+                        'email' => 'Correo electronico',
+                        'username' => 'Nombre de usuario',
+                        'password_hash' => 'Contraseña',
+			'first_name' => 'Nombre',
+			'last_name' => 'Apellido',
+                        'is_help_desk' => 'Es oficial de Mesa de ayuda',
 		);
 	}
 

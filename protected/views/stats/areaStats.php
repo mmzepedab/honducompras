@@ -19,9 +19,9 @@ $this->menu=array(
 <?php 
     $connection = Yii::app()->db;
     
-    $params = isset($_GET['start_date']) ? "AND `create_time` >= '".$_GET['start_date']."'" : '';
+    $params = isset($_GET['start_date']) ? "AND `create_time` >= '".$_GET['start_date']." 00:00:00'" : '';
     $params = empty($_GET['start_date']) ? '' : $params;
-    $params .= isset($_GET['end_date']) ? " AND `create_time` <= '".$_GET['end_date']."'" : '';
+    $params .= isset($_GET['end_date']) ? " AND `create_time` <= '".$_GET['end_date']." 23:59:59'" : '';
     $params = empty($_GET['end_date']) ? '' : $params;
     $command = "SELECT COUNT(*) as count FROM tbl_issue WHERE category_id = 1 ".$params;
     $row=$connection->createCommand($command)->queryRow();
