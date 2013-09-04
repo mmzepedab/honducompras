@@ -21,7 +21,7 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-                array('name'=>'Asignado a','value'=>isset($model->user)?CHtml::encode($model->user->concatened):"unknown"),
+                array('name'=>'Asignado a','value'=>isset($model->user)?CHtml::encode($model->user->concatened):"Desconocido"),
 		array('name'=>'Categoria','value'=>CHtml::encode($model->getCategory($model->category_id))),		
                 'institution_name',
                 'contact_number',

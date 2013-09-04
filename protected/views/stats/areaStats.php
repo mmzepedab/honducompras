@@ -38,6 +38,9 @@ $this->menu=array(
     $command = "SELECT COUNT(*) as count FROM tbl_issue WHERE category_id = 5 ".$params; 
     $row=$connection->createCommand($command)->queryRow();
     $RPCIssues = (isset($row['count']) ? $row['count'] : 0);
+    $command = "SELECT COUNT(*) as count FROM tbl_issue WHERE category_id = 6 ".$params; 
+    $row=$connection->createCommand($command)->queryRow();
+    $CUBSIssues = (isset($row['count']) ? $row['count'] : 0);
 ?>
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -51,12 +54,13 @@ $this->menu=array(
           ['Catalogo Electronico',     <?php echo $eCatalogIssues;?>],
           ['Legal',     <?php echo $legalIssues;?>],
           ['PACC',     <?php echo $PACCIssues;?>],
-          ['Registro de proveedores',     <?php echo $RPCIssues;?>]
+          ['Registro de proveedores',     <?php echo $RPCIssues;?>],
+          ['CUBS',     <?php echo $CUBSIssues;?>]
         ]);
 
         var options = {
           title: 'Consultas por area',
-          colors: ['#B3B3B3', '#2D5897', '#339900', '#CC3333', '#FFCC00']
+          colors: ['#B3B3B3', '#2D5897', '#339900', '#CC3333', '#FFCC00', '#CD38FF']
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));

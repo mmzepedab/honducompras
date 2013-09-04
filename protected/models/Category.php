@@ -84,13 +84,11 @@ class Category extends CActiveRecord
 		));
 	}
         
+        
+        
         public function getCategories(){
-            return array(               
-                1=>'Honducompras',
-                2=>'Catalogo Electronico',
-                3=>'Legal',
-                4=>'PACC',
-                5=>'Registro de proveedores',
-            );            
+            $categories = Category::model()->findAll();
+            $categoriesArr = Chtml::listData($categories, 'id', 'name');
+            return $categoriesArr;
         }
 }

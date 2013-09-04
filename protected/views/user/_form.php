@@ -28,9 +28,28 @@
 	</div>
         
         <div class="row">
+                <?php if($model->isNewRecord){ ?>
 		<?php echo $form->labelEx($model,'password_hash'); ?>
-		<?php echo $form->passwordField($model,'password_hash',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->passwordField($model,'password_hash',
+                        array(  'size'=>60,
+                                'maxlength'=>255,
+                                'value'=> $model->isNewRecord ? '' : '12345'
+                            )
+                        ); ?>
 		<?php echo $form->error($model,'password_hash'); ?>
+                <?php } ?>
+	</div>
+        
+        <div class="row">
+                <?php if($model->isNewRecord){ ?>
+		<?php echo $form->labelEx($model,'password_repeat'); ?>
+		<?php echo $form->passwordField($model,'password_repeat',
+                        array(  'size'=>60,
+                                'maxlength'=>255
+                            )
+                        ); ?>
+		<?php echo $form->error($model,'password_repeat'); ?>
+                <?php } ?>
 	</div>
         
 	<div class="row">
@@ -52,7 +71,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

@@ -11,10 +11,12 @@
  * @property string $last_name
  * @property integer $is_help_desk
  * @property string $password_hash
+ * @property string $password_repeat
  */
 class User extends CActiveRecord
 {
-	/**
+        public $password_repeat;  
+        /**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
 	 * @return User the static model class
@@ -40,11 +42,14 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('first_name, last_name, username, email, password_hash', 'required'),
+			array('first_name, last_name, username, email, is_help_desk', 'required', 'on'=>'insert, update'),
+                        array('password_hash, password_repeat', 'required', 'on'=>'insert'),
 			array('first_name, last_name, username, email', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, first_name, last_name', 'safe', 'on'=>'search'),
+                        array('password_repeat', 'compare', 'compareAttribute'=>'password_hash', 'message'=>"Las contraseñas no coinciden."),
+                        array('password_repeat , password_hash', 'safe'),
 		);
 	}
 
@@ -56,6 +61,7 @@ class User extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+                    'issues'=> array(self::HAS_MANY, 'tbl_issue', 'assigned_to'),
 		);
 	}
 
@@ -69,6 +75,7 @@ class User extends CActiveRecord
                         'email' => 'Correo electronico',
                         'username' => 'Nombre de usuario',
                         'password_hash' => 'Contraseña',
+                        'password_repeat' => 'Repetir Contraseña',
 			'first_name' => 'Nombre',
 			'last_name' => 'Apellido',
                         'is_help_desk' => 'Es oficial de Mesa de ayuda',
@@ -95,7 +102,7 @@ class User extends CActiveRecord
 		));
 	}
         
-        
+        /*
         public function getHelpDeskUsers(){
             return array(               
                 1=>'Mario Zepeda',
@@ -106,9 +113,47 @@ class User extends CActiveRecord
                 6=>'Omar Valladares', 
             );            
         }
+         * 
+         */
+        
+        public function getHelpDeskUsers(){
+            $users = User::model()->findAll();
+            $usersArr = Chtml::listData($users, 'id', 'concatened');
+            return $usersArr;
+        }
         
         public function getConcatened()
         {
                 return $this->first_name.' '.$this->last_name;
+        }
+        
+        protected function beforeSave()
+        {
+            $this->password_hash = crypt($this->password_hash, self::blowfishSalt());
+            return parent::beforeSave();
+        }
+        
+        /**
+         * Generate a random salt in the crypt(3) standard Blowfish format.
+         *
+         * @param int $cost Cost parameter from 4 to 31.
+         *
+         * @throws Exception on invalid cost parameter.
+         * @return string A Blowfish hash salt for use in PHP's crypt()
+         */
+        function blowfishSalt($cost = 13)
+        {
+            if (!is_numeric($cost) || $cost < 4 || $cost > 31) {
+                throw new Exception("cost parameter must be between 4 and 31");
+            }
+            $rand = array();
+            for ($i = 0; $i < 8; $i += 1) {
+                $rand[] = pack('S', mt_rand(0, 0xffff));
+            }
+            $rand[] = substr(microtime(), 2, 6);
+            $rand = sha1(implode('', $rand), true);
+            $salt = '$2a$' . sprintf('%02d', $cost) . '$';
+            $salt .= strtr(substr(base64_encode($rand), 0, 22), array('+' => '.'));
+            return $salt;
         }
 }

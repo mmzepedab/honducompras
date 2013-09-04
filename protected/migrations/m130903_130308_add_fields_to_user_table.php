@@ -13,7 +13,7 @@ class m130903_130308_add_fields_to_user_table extends CDbMigration
 	}
 
 	public function down()
-	{
+	{                
                 $this->dropIndex('username','tbl_user');
                 $this->dropIndex('email','tbl_user');
 		$this->dropColumn('tbl_user','username');

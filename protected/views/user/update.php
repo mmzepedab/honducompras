@@ -3,19 +3,20 @@
 /* @var $model User */
 
 $this->breadcrumbs=array(
-	'Users'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	'Usuarios'=>array('index'),
+	$model->username=>array('view','id'=>$model->id),
+	'Actualizar',
 );
 
 $this->menu=array(
-	array('label'=>'List User', 'url'=>array('index')),
-	array('label'=>'Create User', 'url'=>array('create')),
-	array('label'=>'View User', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage User', 'url'=>array('admin')),
+        !Yii::app()->user->isGuest ? array('label'=>'Cambiar Contraseña', 'url'=>array('index')) : "",    
+	array('label'=>'Listar Usuarios', 'url'=>array('index')),
+	array('label'=>'Crear Usuario', 'url'=>array('create')),
+	array('label'=>'Ver Usuario', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Administrar Usuario', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update User <?php echo $model->id; ?></h1>
+<h1>Actualizar Usuario <?php echo $model->username; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

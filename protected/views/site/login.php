@@ -3,9 +3,9 @@
 /* @var $model LoginForm */
 /* @var $form CActiveForm  */
 
-$this->pageTitle=Yii::app()->name . ' - Inicio de sesión';
+$this->pageTitle=Yii::app()->name . ' - Inicio de sesiÃ³n';
 $this->breadcrumbs=array(
-	'Inicio de sesión',
+	'Inicio de sesiÃ³n',
 );
 ?>
 

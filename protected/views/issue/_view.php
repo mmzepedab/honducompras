@@ -16,7 +16,7 @@
 	<br />
         
 	<b><?php echo CHtml::encode($data->getAttributeLabel('assigned_to')); ?>:</b>
-	<?php echo CHtml::encode($data->user->concatened); ?>
+	<?php echo isset($data->user)?CHtml::encode($data->user->concatened):"Desconocido"; ?>       
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('institution_name')); ?>:</b>
