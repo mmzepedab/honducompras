@@ -31,26 +31,26 @@
 			'items'=>array(
 				array('label'=>'Inicio', 'url'=>array('/site/index')), 
                                 array('label'=>'Mesa de ayuda', 'url'=>('?r=issue'),'items'=>array(
-                                    array('label'=>'Consultas', 'url'=>array('issue/index')),
-                                    array('label'=>'Estadisticas', 'url'=>array('stats/index')),
-                                    array('label'=>'Preguntas Frecuentes', 'url'=>array('question/index')),                                   
+                                    array('label'=>'Consultas', 'url'=>array('/issue')),
+                                    array('label'=>'Estadisticas', 'url'=>array('/stats')),
+                                    array('label'=>'Preguntas Frecuentes', 'url'=>array('/question')),                                   
                                     array('label'=>'Contacto', 'url'=>array('/site/contact')),
                                 )),			
                                 array('label'=>'Acerca de', 'url'=>array('/site/page', 'view'=>'about')),
-                                array('label'=>'Administracion', 'url'=>array('/site/page'), 'visible'=>(Yii::app()->user->name == 'mzepeda') , 'items'=>array(
-                                    array('label'=>'Usuarios', 'url'=>array('user/index')),
-                                    
-                                    array('label'=>'Consultas', 'url'=>array('user/index'),'items'=>array(
-                                        array('label'=>'Categorias', 'url'=>array('category/index')),
-                                        array('label'=>'Metodos de recepcion', 'url'=>array('issueReceptionType/index')),
+                                array('label'=>'Administracion', 'url'=>array('#'), 'visible'=>(Yii::app()->user->checkAccess('RBAC Manager')) , 'items'=>array(
+                                    array('label'=>'Usuarios', 'url'=>array('/user')),
+                                    array('label'=>'Roles de Usuarios', 'url'=>array('/rbam') , 'visible'=>(Yii::app()->user->checkAccess('RBAC Manager'))),
+                                    array('label'=>'Consultas', 'url'=>array('/user'),'items'=>array(
+                                        array('label'=>'Categorias', 'url'=>array('/category')),
+                                        array('label'=>'Metodos de recepcion', 'url'=>array('/issueReceptionType')),
                                     )),      
                                 )),
 				array('label'=>'Inicio de sesion', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				
                                  array('label'=>'Mi perfil ('.Yii::app()->user->name.')', 'visible'=>!Yii::app()->user->isGuest, 'url'=>('?r=issue'),'items'=>array(
-                                    array('label'=>'Ver mi perfil', 'url'=>array('user/view', 'id'=>Yii::app()->user->id)),
-                                    array('label'=>'Actualizar mi información', 'url'=>array('user/update', 'id'=>Yii::app()->user->id)),
-                                    array('label'=>'Cambiar Contraseña', 'url'=>array('stats/index')),
+                                    array('label'=>'Ver mi perfil', 'url'=>array('/user/view', 'id'=>Yii::app()->user->id)),
+                                    array('label'=>'Actualizar mi información', 'url'=>array('/user/update', 'id'=>Yii::app()->user->id)),
+                                    array('label'=>'Cambiar Contraseña', 'url'=>array('/stats/index')),
                                     array('label'=>'Cerrar Sesión', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
                                 )),
 			

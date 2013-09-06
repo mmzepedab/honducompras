@@ -27,6 +27,10 @@ return array(
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
+            
+                'rbam'=>array(
+                    // RBAM Configuration
+                ),
 		
 	),
 
@@ -42,6 +46,15 @@ return array(
      		//And integer that holds the offset of hours from GMT e.g. 4 for GMT +4
      		'offset' =>-6,
 		),
+            
+                'authManager'=>array( 
+                'class'=>'CDbAuthManager', 
+                'connectionID'=>'db',
+                'itemTable'=>'tbl_auth_item',
+                'itemChildTable'=>'tbl_auth_item_child',
+                'assignmentTable'=>'tbl_auth_assignment',    
+                    
+                ),
 		
 		// uncomment the following to enable URLs in path-format
 		/*

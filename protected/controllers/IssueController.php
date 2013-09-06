@@ -33,11 +33,11 @@ class IssueController extends Controller
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
-				'users'=>array('@'),
+				'roles'=>array('helpdesk_central'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'roles'=>array('helpdesk_admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -142,8 +142,12 @@ class IssueController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+                if(!Yii::app()->user->checkAccess('helpdesk_admin')) {
+                    throw new CHttpException(403,'No esta autorizado para realizar esta accion.');
+                }
 
+		$this->loadModel($id)->delete();
+                
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));

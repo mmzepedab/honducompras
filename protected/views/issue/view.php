@@ -9,10 +9,10 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Listar consultas', 'url'=>array('index')),
-	array('label'=>'Crear consultas', 'url'=>array('create')),
-	array('label'=>'Actualizar consultas', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Borrar consulta', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Administrar consultas', 'url'=>array('admin')),
+	array('label'=>'Crear consultas', 'url'=>array('create') , 'visible'=>Yii::app()->user->checkAccess('helpdesk_central')),
+	array('label'=>'Actualizar consultas', 'url'=>array('update', 'id'=>$model->id) , 'visible'=>Yii::app()->user->checkAccess('helpdesk_central') ),
+        array('label'=>'Borrar consulta', 'url'=>'#', 'visible'=>Yii::app()->user->checkAccess('helpdesk_admin'), 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Esta seguro que desea eliminar este item?')), 
+	array('label'=>'Administrar consultas', 'visible'=>Yii::app()->user->checkAccess('helpdesk_admin'), 'url'=>array('admin')),
 );
 ?>
 
