@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	array('label'=>'Rendimiento por oficial', 'url'=>array('stats/index')),
 	array('label'=>'Consultas por area', 'url'=>array('stats/areaStats')),
-        array('label'=>'Administrar consultas', 'url'=>array('admin')),
+        array('label'=>'Administrar consultas', 'url'=>array('issue/admin')),
 );
 
 ?>

@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	array('label'=>'Rendimiento por oficial', 'url'=>array('stats/index')),
 	array('label'=>'Consultas por area', 'url'=>array('stats/areaStats')),
-        array('label'=>'Administrar consultas', 'url'=>array('admin')),
+        array('label'=>'Administrar consultas', 'url'=>array('issue/admin')),
 );
 
 ?>
@@ -52,10 +52,9 @@ $this->menu=array(
 
 
 <h1><?php echo 'Rendimiento'  ?></h1>
-<h3><?php echo '<b>Total tickets:</b> '. ($openedTickets + $closedTickets) .' <i>('.$openedTickets.' Abiertos / '.$closedTickets.' Cerrados)</i>'   ?></h3>
 
 
-Filtrar datos:
+<b>Filtrar datos:</b>
 
 <?php 
     $defaultValue = isset($_GET['uId']) ? $_GET['uId'] : 'prompt';
@@ -70,6 +69,8 @@ Filtrar datos:
     . CHtml::link('Mostrar todos los resultados',array('stats/index'),array('style'=>'font-size:smaller;text-decoration:none;'))
     . CHtml::endForm();
 	?>
+</br>
+<h3><?php echo '<b>Total tickets:</b> '. ($openedTickets + $closedTickets) .' <i>('.$openedTickets.' Abiertos / '.$closedTickets.' Cerrados)</i>'   ?></h3>
 
 
 <div id="piechart" style="width: 100%; height: 500px;"></div>

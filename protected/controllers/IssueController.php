@@ -1,7 +1,9 @@
 <?php
 
+require ('mail/class.phpmailer.php');
 class IssueController extends Controller
 {
+
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
@@ -71,38 +73,9 @@ class IssueController extends Controller
 		{
 			$model->attributes=$_POST['Issue'];
 			if($model->save()){
-                                    $to      = $model->contact_email. ', '; // note the comma
-                                    $to .= 'cconcae@gmail.com';
-                                    $subject = 'Ticket '.$model->ticket_number.' Mesa de Ayuda ONCAE';
-
-                                    // message
-                                    $message = '
-                                    <html>
-                                    <head>
-                                      <title>'.$model->ticket_number.' </title>
-                                    </head>
-                                    <body>
-                                      <p>Se ha creado el ticket <b>'.$model->ticket_number.'</b> se le asigno al Oficial de Mesa de Ayuda <b>'.$model->user->concatened.'</b> </p>
-                                      </br>
-                                      </br>
-                                      <p>Puede ver el estado de su consulta en http://www.oncae.gob.hn/honducompras</p>
-                                      <p>Para dar seguimiento a su consulta via telefono llamar al 2238-7827</p>
-                                    </body>
-                                    </html>
-                                    ';
-
-                                    // To send HTML mail, the Content-type header must be set
-                                    $headers  = 'MIME-Version: 1.0' . "\r\n";
-                                    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-                                    
-                                    
-                                    $headers .= 'From: Mesa de ayuda ONCAE' . "\r\n" .
-                                                'Reply-To: cconcae@gmail.com' . "\r\n" .
-                                                'X-Mailer: PHP/' . phpversion();
-                                    mail($to, $subject, $message, $headers);
                             
-                            
-				$this->redirect(array('view','id'=>$model->id));
+                            $this->sendEmail($model->contact_email,$model->user->email,$model->ticket_number,$model->id,$model->user->concatened);
+                            $this->redirect(array('view','id'=>$model->id));
                         }
 		}
 
@@ -217,5 +190,52 @@ class IssueController extends Controller
             
         }
         
-        
+        public function sendEmail($to, $toCC, $tNumber, $tId, $userFullName)
+	{
+                $mail = new PHPMailer;
+                $mail->IsSMTP();                                      	// Set mailer to use SMTP
+                $mail->Host = 'smtp.gmail.com';  			// Specify main and backup server
+                $mail->Port='465'; 
+                $mail->SMTPAuth = true;                               	// Enable SMTP authentication
+                $mail->Username = 'cconcae';                          // SMTP username
+                $mail->Password = '';                        // SMTP password
+                $mail->SMTPSecure = 'ssl';                            	// Enable encryption, 'ssl' also accepted
+                $mail->SMTPKeepAlive = true;  
+
+                $mail->From = 'mmzepedab@gmail.com';
+                $mail->FromName = 'Mesa de Ayuda ONCAE';
+                $mail->AddAddress($to);  // Add a recipient
+                //$mail->AddAddress('ellen@example.com');               // Name is optional
+                $mail->AddReplyTo('cconcae@gmail.com', 'Mesa de ayuda ONCAE');
+                $mail->AddCC($toCC, $userFullName);
+                $mail->AddCC('cconcae@gmail.com', 'Mesa de ayuda ONCAE');
+                //$mail->AddBCC('bcc@example.com');
+
+                //$mail->WordWrap = 50;                                 // Set word wrap to 50 characters
+                //$mail->AddAttachment('/var/tmp/file.tar.gz');         // Add attachments
+                //$mail->AddAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+                $mail->IsHTML(true);                                  // Set email format to HTML
+                $subject = 'Ticket '.$tNumber.' Mesa de Ayuda ONCAE';
+                $message = '
+                                    <html>
+                                    <head>
+                                      <title>'.$tNumber.' </title>
+                                    </head>
+                                    <body>
+                                      <p>Se ha creado el ticket <b>'.$tNumber.'</b> se le asigno al Oficial de Mesa de Ayuda <b>'.$userFullName.'</b> </p>
+                                      </br>
+                                      <p>Puede ver el estado de su consulta en <b><a href="http://www.oncae.gob.hn/honducompras/index.php?r=issue/view&id='.$tId.'">este link</a></b></p>
+                                      <p>Para dar seguimiento a su consulta via telefono llamar al 2238-7827</p>
+                                    </body>
+                                    </html>
+                                    ';
+                
+                $mail->Subject = $subject;
+                $mail->Body    = $message;
+                //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+                if(!$mail->Send()) {
+                   throw new CHttpException(410, 'Se ha creado la consulta pero ocurrio un error al momento de enviar los correos, favor realizar este paso manualmente.');
+                }
+	}
 }

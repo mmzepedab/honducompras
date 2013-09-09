@@ -19,18 +19,7 @@
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
         
-        <!-- Js slider -->
         
-        <!-- load jQuery and the plugin -->
-        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-        <script src="js/bjqs-1.3.js"></script>
-        
-        <!-- bjqs.css contains the *essential* css needed for the slider to work -->
-    <link rel="stylesheet" href="css/bjqs.css">
-
-
-    <!-- demo.css contains additional styles used to set up this demo page - not required for the slider --> 
-    <link rel="stylesheet" href="css/demo.css">
 </head>
 
 <body>
@@ -41,9 +30,9 @@
             <div id="loginInfo">
                 <?php  if(!Yii::app()->user->isGuest){
                             echo 'Bienvenido/a <b>'.Yii::app()->user->first_name.' '.Yii::app()->user->last_name.'</b></br>';
-                            echo ' <a href="?r=site/logout">Cerrar Sesión</a>'; 
+                            echo '[ <a href="?r=site/logout">Cerrar Sesión</a> ]'; 
                         }else{
-                            echo ' <a href="?r=site/login">Iniciar Sesión</a>';  
+                            echo '[ <a href="?r=site/login">Iniciar Sesión</a> ]';  
                         }  
                 ?> 
                     
@@ -58,7 +47,7 @@
 				array('label'=>'Inicio', 'url'=>array('/site/index')), 
                                 array('label'=>'Mesa de ayuda', 'url'=>('?r=issue'),'items'=>array(
                                     array('label'=>'Consultas', 'url'=>array('/issue')),
-                                    array('label'=>'Estadisticas', 'url'=>array('/stats')),
+                                    array('label'=>'Estadisticas', 'url'=>array('/stats'), 'visible'=>Yii::app()->user->checkAccess('helpdesk')),
                                     array('label'=>'Preguntas Frecuentes', 'url'=>array('/question')),                                   
                                     array('label'=>'Contacto', 'url'=>array('/site/contact')),
                                 )),			
