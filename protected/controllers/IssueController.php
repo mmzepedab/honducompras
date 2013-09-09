@@ -156,9 +156,13 @@ class IssueController extends Controller
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex()
+	public function actionIndex($tNumber = '')
 	{
-		$dataProvider=new CActiveDataProvider('Issue');
+                $criteria = new CDbCriteria();
+                $criteria->addSearchCondition( 'ticket_number', $tNumber, true );
+                
+		$dataProvider=new CActiveDataProvider('Issue',array('criteria'=>$criteria,));
+                $dataProvider->pagination->pageSize = 5;
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

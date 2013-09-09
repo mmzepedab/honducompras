@@ -32,7 +32,9 @@ class UserIdentity extends CUserIdentity
 		elseif($record->password_hash !== crypt($this->password, $record->password_hash))
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;
                 else{
-                        $this->_id = $record->id;
+                        $this->_id = $record->id;                        
+                        $this->setState('first_name', $record->first_name);
+                        $this->setState('last_name', $record->last_name);
 			$this->errorCode=self::ERROR_NONE;
                 }
 		return !$this->errorCode;
