@@ -48,7 +48,7 @@ class User extends CActiveRecord
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, first_name, last_name', 'safe', 'on'=>'search'),
-                        array('password_repeat', 'compare', 'compareAttribute'=>'password_hash', 'message'=>"Las contraseñas no coinciden."),
+                        array('password_repeat', 'compare', 'compareAttribute'=>'password_hash', 'message'=>"Las contraseñas no coinciden." , 'on'=>'insert'),
                         array('password_repeat , password_hash', 'safe'),
 		);
 	}
