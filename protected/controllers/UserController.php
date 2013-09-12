@@ -32,7 +32,7 @@ class UserController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','changePassword'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -145,6 +145,27 @@ class UserController extends Controller
 			'model'=>$model,
 		));
 	}
+        
+        //My Custom Actions
+        
+        public function actionChangePassword()
+        {   
+            
+            $model=new ChangePasswordForm();
+            if (isset($_POST['ChangePasswordForm'])) {
+                $model->setAttributes($_POST['ChangePasswordForm']);
+                if ($model->validate()) {
+                    if($model->saveNewPassword()){
+                        // you can redirect here
+                        Yii::app()->user->setFlash('success', "Se actualizó su contraseña correctamente");
+                        $this->redirect(array('view','id'=>Yii::app()->user->id));
+                    }
+                }
+            }
+
+            $this->render('changePassword', array('model'=>$model));
+        }
+        
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

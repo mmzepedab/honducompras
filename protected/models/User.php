@@ -15,7 +15,8 @@
  */
 class User extends CActiveRecord
 {
-        public $password_repeat;  
+        public $password_repeat; 
+        public $temp_password; //When updating to validate if the password was changed
         /**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -129,8 +130,30 @@ class User extends CActiveRecord
         
         protected function beforeSave()
         {
-            $this->password_hash = crypt($this->password_hash, self::blowfishSalt());
+            if ($this->isNewRecord){
+                $this->password_hash = crypt($this->password_hash, self::blowfishSalt());
+            }/*else{
+                //echo $this->password_hash.'</br>';
+                //echo $this->temp_password.'</br>';
+                //echo crypt($this->password_hash, $this->temp_password).'</br>';
+                if($this->temp_password === crypt($this->password_hash, $this->temp_password)  ){
+                    //echo "Verdadero".'</br>';
+                    $this->password_hash = $this->temp_password;                    
+                }else{
+                    //echo "Falso".'</br>';
+                    $this->password_hash = crypt($this->password_hash, self::blowfishSalt());
+                }                
+            }*/
             return parent::beforeSave();
+        }
+        
+        public function afterFind()
+        {
+            //reset the password to null because we don't want the hash to be shown.
+            $this->temp_password = $this->password_hash;
+            //$this->password_hash = null;
+
+            parent::afterFind();
         }
         
         /**
@@ -156,4 +179,8 @@ class User extends CActiveRecord
             $salt .= strtr(substr(base64_encode($rand), 0, 22), array('+' => '.'));
             return $salt;
         }
+        
+        
+        
+        
 }

@@ -75,6 +75,7 @@ class IssueController extends Controller
 			if($model->save()){
                             
                             $this->sendEmail($model->contact_email,$model->user->email,$model->ticket_number,$model->id,$model->user->concatened);
+                            Yii::app()->user->setFlash('success', "Se creó la consulta correctamente.");
                             $this->redirect(array('view','id'=>$model->id));
                         }
 		}
@@ -167,7 +168,7 @@ class IssueController extends Controller
 	{
 		$model=Issue::model()->findByPk($id);
 		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+			throw new CHttpException(404,'El item solicitado no existe.');
 		return $model;
 	}
 
@@ -198,11 +199,11 @@ class IssueController extends Controller
                 $mail->Port='465'; 
                 $mail->SMTPAuth = true;                               	// Enable SMTP authentication
                 $mail->Username = 'cconcae';                          // SMTP username
-                $mail->Password = '';                        // SMTP password
+                $mail->Password = '@oncaecc';                        // SMTP password
                 $mail->SMTPSecure = 'ssl';                            	// Enable encryption, 'ssl' also accepted
                 $mail->SMTPKeepAlive = true;  
 
-                $mail->From = 'mmzepedab@gmail.com';
+                $mail->From = 'cconcae@gmail.com';
                 $mail->FromName = 'Mesa de Ayuda ONCAE';
                 $mail->AddAddress($to);  // Add a recipient
                 //$mail->AddAddress('ellen@example.com');               // Name is optional

@@ -13,7 +13,7 @@
 
 	<p class="note">Campos con <span class="required">*</span> son requeridos.</p>
 
-	<?php echo $form->errorSummary($model); ?>
+	<?php echo $form->errorSummary($model, 'Por favor arregle los siguientes errores: </br></br>'); ?>
 
         <div class="row">
 		<?php echo $form->labelEx($model,'email'); ?>
@@ -27,30 +27,7 @@
 		<?php echo $form->error($model,'username'); ?>
 	</div>
         
-        <div class="row">
-                <?php if($model->isNewRecord){ ?>
-		<?php echo $form->labelEx($model,'password_hash'); ?>
-		<?php echo $form->passwordField($model,'password_hash',
-                        array(  'size'=>60,
-                                'maxlength'=>255,
-                                'value'=> $model->isNewRecord ? '' : '12345'
-                            )
-                        ); ?>
-		<?php echo $form->error($model,'password_hash'); ?>
-                <?php } ?>
-	</div>
-        
-        <div class="row">
-                <?php if($model->isNewRecord){ ?>
-		<?php echo $form->labelEx($model,'password_repeat'); ?>
-		<?php echo $form->passwordField($model,'password_repeat',
-                        array(  'size'=>60,
-                                'maxlength'=>255
-                            )
-                        ); ?>
-		<?php echo $form->error($model,'password_repeat'); ?>
-                <?php } ?>
-	</div>
+       
         
 	<div class="row">
 		<?php echo $form->labelEx($model,'first_name'); ?>

@@ -62,10 +62,10 @@
                                 )),
 				array('label'=>'Inicio de sesion', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				
-                                 array('label'=>'Mi perfil ('.Yii::app()->user->name.')', 'visible'=>!Yii::app()->user->isGuest, 'url'=>('?r=issue'),'items'=>array(
+                                 array('label'=>'Mi perfil ('.Yii::app()->user->name.')', 'visible'=>!Yii::app()->user->isGuest, 'url'=>('?r=user/view&id='.Yii::app()->user->id),'items'=>array(
                                     array('label'=>'Ver mi perfil', 'url'=>array('/user/view', 'id'=>Yii::app()->user->id)),
                                     array('label'=>'Actualizar mi información', 'url'=>array('/user/update', 'id'=>Yii::app()->user->id)),
-                                    array('label'=>'Cambiar Contraseña', 'url'=>array('/stats/index')),
+                                    array('label'=>'Cambiar Contraseña', 'url'=>array('/user/changePassword')),
                                     array('label'=>'Cerrar Sesión', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
                                 )),
 			
@@ -79,6 +79,8 @@
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
 
+        <?php $this->widget('Flashes'); ?>       
+                
 	<?php echo $content; ?>
 
 	<div class="clear"></div>
