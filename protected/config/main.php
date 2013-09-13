@@ -70,9 +70,10 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-                            'connectionString' => 'sqlsrv:Server=CASA-PC\SQLEXPRESS;Database=honducompras',
-                            'username' => 'sa',
-                            'password' => 'Q1w2e3r4t5@',
+                            'connectionString' => 'mysql:host=localhost;dbname=honducompras;unix_socket=/Applications/MAMP/tmp/mysql/mysql.sock',
+                            'emulatePrepare' => true,
+                            'username' => 'root',
+                            'password' => 'root',
                             'charset' => 'utf8',
                     ),
 		
