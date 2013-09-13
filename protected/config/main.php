@@ -72,7 +72,7 @@ return array(
 		'db'=>array(
                             'connectionString' => 'sqlsrv:Server=CASA-PC\SQLEXPRESS;Database=honducompras',
                             'username' => 'sa',
-                            'password' => 'Q1w2e3r4t5@',
+                            'password' => '12345678',
                             'charset' => 'utf8',
                     ),
 		

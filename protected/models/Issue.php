@@ -139,9 +139,7 @@ class Issue extends CActiveRecord
                     $this->create_user = Yii::app()->user->name;
                     //Add oder_number to database 
                     $connection = Yii::app()->db;
-                    //** With MySql
-                    //$command = "SELECT MAX(order_number) as order_number FROM tbl_issue WHERE MONTH(create_time) = MONTH(CURDATE());";
-                    $command = "SELECT MAX(order_number) as order_number FROM tbl_issue WHERE MONTH(create_time) = MONTH(GETDATE());"; 
+                    $command = "SELECT MAX(`order_number`) as order_number FROM tbl_issue WHERE MONTH(`create_time`) = MONTH(CURDATE());"; 
                     $row=$connection->createCommand($command)->queryRow();
                     $this->order_number = (isset($row['order_number']) ? $row['order_number'] : 0) + 1;
                     
