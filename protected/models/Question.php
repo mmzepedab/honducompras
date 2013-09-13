@@ -109,14 +109,17 @@ class Question extends CActiveRecord
 	}
         
         public function getDeptOptions(){
-            return array(               
+            $categories = Category::model()->findAll();
+            $categoriesArr = Chtml::listData($categories, 'id', 'name');
+            return $categoriesArr;
+            /*return array(               
                 self::DEPT_CONVENIO_MARCO=>'Convenio Marco',
                 self::DEPT_CCORPO=>'Compras Coorporativas',
                 self::DEPT_LEGAL=>'Legal',
                 self::DEPT_REGISTRO_PROVEEDORES=>'Registro de proveedores',
                 self::DEPT_MESA_AYUDA=>'Mesa de ayuda',                
                 self::DEPT_OTHER=>'Otro', 
-            );            
+            );*/            
         }
         
         public function getDeptText(){
