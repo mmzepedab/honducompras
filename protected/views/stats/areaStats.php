@@ -19,28 +19,15 @@ $this->menu=array(
 <?php 
     $connection = Yii::app()->db;
     
-    $params = isset($_GET['start_date']) ? "AND `create_time` >= '".$_GET['start_date']." 00:00:00'" : '';
+    $params = isset($_GET['start_date']) ? "WHERE create_time >= '".$_GET['start_date']." 00:00:00'" : '';
     $params = empty($_GET['start_date']) ? '' : $params;
-    $params .= isset($_GET['end_date']) ? " AND `create_time` <= '".$_GET['end_date']." 23:59:59'" : '';
+    $params .= isset($_GET['end_date']) ? " AND create_time <= '".$_GET['end_date']." 23:59:59'" : '';
     $params = empty($_GET['end_date']) ? '' : $params;
-    $command = "SELECT COUNT(*) as count FROM tbl_issue WHERE category_id = 1 ".$params;
-    $row=$connection->createCommand($command)->queryRow();
-    $honducomprasIssues = (isset($row['count']) ? $row['count'] : 0);
-    $command = "SELECT COUNT(*) as count FROM tbl_issue WHERE category_id = 2 ".$params; 
-    $row=$connection->createCommand($command)->queryRow();
-    $eCatalogIssues = (isset($row['count']) ? $row['count'] : 0);
-    $command = "SELECT COUNT(*) as count FROM tbl_issue WHERE category_id = 3 ".$params; 
-    $row=$connection->createCommand($command)->queryRow();
-    $legalIssues = (isset($row['count']) ? $row['count'] : 0);
-    $command = "SELECT COUNT(*) as count FROM tbl_issue WHERE category_id = 4 ".$params; 
-    $row=$connection->createCommand($command)->queryRow();
-    $PACCIssues = (isset($row['count']) ? $row['count'] : 0);
-    $command = "SELECT COUNT(*) as count FROM tbl_issue WHERE category_id = 5 ".$params; 
-    $row=$connection->createCommand($command)->queryRow();
-    $RPCIssues = (isset($row['count']) ? $row['count'] : 0);
-    $command = "SELECT COUNT(*) as count FROM tbl_issue WHERE category_id = 6 ".$params; 
-    $row=$connection->createCommand($command)->queryRow();
-    $CUBSIssues = (isset($row['count']) ? $row['count'] : 0);
+    
+    $command = "SELECT DISTINCT tbl_category.name, COUNT(*) AS count FROM tbl_issue INNER JOIN tbl_category ON tbl_issue.category_id = tbl_category.id ".$params." GROUP BY tbl_category.name ";
+    $rows=$connection->createCommand($command)->queryAll();    
+
+    
 ?>
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -50,12 +37,12 @@ $this->menu=array(
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Estado', 'Tickets'],
-          ['Honducompras',     <?php echo $honducomprasIssues;?>],
-          ['Catalogo Electronico',     <?php echo $eCatalogIssues;?>],
-          ['Legal',     <?php echo $legalIssues;?>],
-          ['PACC',     <?php echo $PACCIssues;?>],
-          ['Registro de proveedores',     <?php echo $RPCIssues;?>],
-          ['CUBS',     <?php echo $CUBSIssues;?>]
+              <?php
+                foreach($rows as $r){
+                    echo("['".$r['name']."', ".$r['count']."],");
+                }
+              ?>
+
         ]);
 
         var options = {
