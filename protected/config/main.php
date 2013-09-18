@@ -69,13 +69,24 @@ return array(
 		*/
 		// uncomment the following to use a MySQL database
 		
+            
+//                // MySQL database on Oncae Server
+//		'db'=>array(
+//                            'connectionString' => 'mysql:host=localhost;dbname=honducompras',
+//                            'emulatePrepare' => true,
+//                            'username' => 'root',
+//                            'password' => '',
+//                            'charset' => 'utf8',
+//                    ),
+            
+//                // MSSql database on Oncae Server
 		'db'=>array(
-                            'connectionString' => 'mysql:host=localhost;dbname=honducompras;unix_socket=/Applications/MAMP/tmp/mysql/mysql.sock',
-                            'emulatePrepare' => true,
-                            'username' => 'root',
-                            'password' => 'root',
+                            'connectionString' => 'sqlsrv:Server=localhost\SQLEXPRESS;Database=honducompras',
+                            'username' => 'sa',
+                            'password' => 'H0nduc0mpr@s',
                             'charset' => 'utf8',
                     ),
+
 		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors

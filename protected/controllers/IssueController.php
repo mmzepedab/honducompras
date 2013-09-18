@@ -130,10 +130,11 @@ class IssueController extends Controller
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex($tNumber = '')
+	public function actionIndex($tNumber = '',$uId = '')
 	{
                 $criteria = new CDbCriteria();
                 $criteria->addSearchCondition( 'ticket_number', $tNumber, true );
+                $criteria->addSearchCondition( 'assigned_to', $uId, false );
                 
 		$dataProvider=new CActiveDataProvider('Issue',array('criteria'=>$criteria,));
                 $dataProvider->pagination->pageSize = 5;

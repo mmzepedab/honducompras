@@ -15,9 +15,15 @@ $this->menu=array(
 <h1>Consultas</h1>
 Numero de ticket:
 <?php 
-    
+    $defaultValue = isset($_GET['uId']) ? $_GET['uId'] : 'prompt';
     echo CHtml::beginForm(CHtml::normalizeUrl(array('issue/index')), 'get', array('id'=>'filter-form'))
     . CHtml::textField('tNumber', (isset($_GET['string'])) ? $_GET['string'] : '', array('id'=>'tNumber'))
+    . CHtml::dropDownList('uId', 
+            'promt', 
+            User::model()->getHelpDeskUsers(), 
+            array('prompt'=>'Por oficial de mesa de ayuda',
+                            'options'=>array($defaultValue=>array('selected'=>'selected'))
+                            ))        
     . CHtml::submitButton('Buscar', array('name'=>''))
     . CHtml::link('Mostrar todos los resultados',array('issue/index'),array('style'=>'font-size:smaller;text-decoration:none;'))
     . CHtml::endForm();
