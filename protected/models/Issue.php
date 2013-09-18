@@ -15,6 +15,7 @@
  * @property string $create_time
  * @property string $create_user
  * @property string $update_user
+ * @property string $description
  */
 class Issue extends CActiveRecord
 {
@@ -88,6 +89,7 @@ class Issue extends CActiveRecord
 			'create_user' => 'Creado por',
 			'update_user' => 'Actualizado por',
                         'reception_type_id' => 'Metodo de recepcion',
+                        'description'=> 'Descripcion',
 		);
 	}
 

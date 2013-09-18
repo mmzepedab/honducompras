@@ -52,6 +52,12 @@
 		<?php echo $form->textField($model,'contact_email',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'contact_email'); ?>
 	</div>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'description'); ?>
+		<?php echo $form->textArea($model,'description',array('maxlength' => 300, 'rows' => 10, 'cols' => 70)); ?>
+		<?php echo $form->error($model,'description'); ?>
+	</div>
 
 	<div class="row">            
 		<?php echo $form->labelEx($model,'status'); ?>
