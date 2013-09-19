@@ -49,7 +49,7 @@ class Issue extends CActiveRecord
 		return array(
 			array('assigned_to, institution_name, contact_number, contact_email, status, category_id, reception_type_id', 'required'),
 			array('ticket_number, assigned_to, institution_name, contact_number, contact_email, status, create_user, update_user', 'length', 'max'=>255),
-			array('create_time', 'safe'),
+			array('create_time, description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, ticket_number, assigned_to, institution_name, contact_number, contact_email, status, create_time, create_user, update_user', 'safe', 'on'=>'search'),

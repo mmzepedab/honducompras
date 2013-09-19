@@ -74,7 +74,7 @@ class IssueController extends Controller
 			$model->attributes=$_POST['Issue'];
 			if($model->save()){
                             
-                            $this->sendEmail($model->contact_email,$model->user->email,$model->ticket_number,$model->id,$model->user->concatened);
+                            $this->sendEmail($model->contact_email,$model->user->email,$model->ticket_number,$model->id,$model->user->concatened,$model->description);
                             Yii::app()->user->setFlash('success', "Se creó la consulta correctamente.");
                             $this->redirect(array('view','id'=>$model->id));
                         }
@@ -100,8 +100,11 @@ class IssueController extends Controller
 		if(isset($_POST['Issue']))
 		{
 			$model->attributes=$_POST['Issue'];
-			if($model->save())
+			if($model->save()){
+                                //echo($model->status);
+                                $this->sendTicketCloseEmail($model->contact_email,$model->user->email,$model->ticket_number,$model->id,$model->user->concatened);
 				$this->redirect(array('view','id'=>$model->id));
+                        }
 		}
 
 		$this->render('update',array(
@@ -192,7 +195,7 @@ class IssueController extends Controller
             
         }
         
-        public function sendEmail($to, $toCC, $tNumber, $tId, $userFullName)
+        public function sendEmail($to, $toCC, $tNumber, $tId, $userFullName, $desc)
 	{
                 $mail = new PHPMailer;
                 $mail->IsSMTP();                                      	// Set mailer to use SMTP
@@ -226,6 +229,10 @@ class IssueController extends Controller
                                     <body>
                                       <p>Se ha creado el ticket <b>'.$tNumber.'</b> se le asigno al Oficial de Mesa de Ayuda <b>'.$userFullName.'</b> </p>
                                       </br>
+                                      Descripción de la consulta:
+                                      </br>
+                                      <p><i>'.$desc.'</i><p>
+                                      </br>    
                                       <p>Puede ver el estado de su consulta en <b><a href="http://www.oncae.gob.hn/honducompras/index.php?r=issue/view&id='.$tId.'">este link</a></b></p>
                                       <p>Para dar seguimiento a su consulta via telefono llamar al 2238-7827</p>
                                     </body>
@@ -238,6 +245,55 @@ class IssueController extends Controller
 
                 if(!$mail->Send()) {
                    throw new CHttpException(410, 'Se ha creado la consulta pero ocurrio un error al momento de enviar los correos, favor realizar este paso manualmente.');
+                }
+	}
+        
+        
+        public function sendTicketCloseEmail($to, $toCC, $tNumber, $tId, $userFullName)
+	{
+                $mail = new PHPMailer;
+                $mail->IsSMTP();                                      	// Set mailer to use SMTP
+                $mail->Host = 'smtp.gmail.com';  			// Specify main and backup server
+                $mail->Port='465'; 
+                $mail->SMTPAuth = true;                               	// Enable SMTP authentication
+                $mail->Username = 'cconcae';                          // SMTP username
+                $mail->Password = '@oncaecc';                        // SMTP password
+                $mail->SMTPSecure = 'ssl';                            	// Enable encryption, 'ssl' also accepted
+                $mail->SMTPKeepAlive = true;  
+
+                $mail->From = 'cconcae@gmail.com';
+                $mail->FromName = 'Mesa de Ayuda ONCAE';
+                $mail->AddAddress($to);  // Add a recipient
+                //$mail->AddAddress('ellen@example.com');               // Name is optional
+                $mail->AddReplyTo('cconcae@gmail.com', 'Mesa de ayuda ONCAE');
+                $mail->AddCC($toCC, $userFullName);
+                $mail->AddCC('cconcae@gmail.com', 'Mesa de ayuda ONCAE');
+                //$mail->AddBCC('bcc@example.com');
+
+                //$mail->WordWrap = 50;                                 // Set word wrap to 50 characters
+                //$mail->AddAttachment('/var/tmp/file.tar.gz');         // Add attachments
+                //$mail->AddAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+                $mail->IsHTML(true);                                  // Set email format to HTML
+                $subject = 'Se ha cerrado el Ticket '.$tNumber.' Mesa de Ayuda ONCAE';
+                $message = '
+                                    <html>
+                                    <head>
+                                      <title>'.$tNumber.' </title>
+                                    </head>
+                                    <body>
+                                      <p>Se ha cerrado el ticket <b>'.$tNumber.'</b> asignado a <b>'.$userFullName.'</b> </p>
+                                      </br>                                      
+                                      <p>Cualquier consulta posterior puede llamar al 2238-7827.</p>
+                                    </body>
+                                    </html>
+                                    ';
+                
+                $mail->Subject = $subject;
+                $mail->Body    = $message;
+                //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+                if(!$mail->Send()) {
+                   throw new CHttpException(410, 'Se ha cerrado la consulta pero ocurrio un error al momento de enviar los correos, favor realizar este paso manualmente.');
                 }
 	}
 }

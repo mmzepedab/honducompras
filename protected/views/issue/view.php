@@ -30,5 +30,6 @@ $this->menu=array(
 		'create_time',
 		'create_user',
 		'update_user',
+                'description',
 	),
 )); ?>
