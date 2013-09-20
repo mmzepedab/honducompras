@@ -86,6 +86,8 @@ return array(
                             'password' => 'H0nduc0mpr@s',
                             'charset' => 'utf8',
                     ),
+            
+            
 
 		
 		'errorHandler'=>array(
