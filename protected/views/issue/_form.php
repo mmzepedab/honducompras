@@ -4,6 +4,7 @@
 /* @var $form CActiveForm */
 ?>
 
+
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -34,8 +35,16 @@
 		<?php /* echo $form->textField($model,'assigned_to',array('size'=>60,'maxlength'=>255)); */ ?> 
 		<?php echo $form->error($model,'assigned_to'); ?>
 	</div>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'institution_id'); ?>  
+            
+                <?php echo $form->dropDownList($model,'institution_id',  array(NULL => 'Seleccione una...',0=>'Otras') + $model->getInstitutions()); ?>
+		<?php /* echo $form->textField($model,'assigned_to',array('size'=>60,'maxlength'=>255)); */ ?> 
+		<?php echo $form->error($model,'institution_id'); ?>
+	</div>
 
-	<div class="row">
+	<div class="row" id="institution_name_div">
 		<?php echo $form->labelEx($model,'institution_name'); ?>
 		<?php echo $form->textField($model,'institution_name',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'institution_name'); ?>
@@ -74,3 +83,15 @@
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+
+<script type="text/javascript">
+    $("#institution_name_div").hide();
+      $( "#Issue_institution_id" ).change(function() {
+            if($( "#Issue_institution_id option:selected" ).val() == 0){
+                $("#institution_name_div").show();
+            }else{
+                $("#institution_name_div").hide();
+            }
+          
+      });
+</script>

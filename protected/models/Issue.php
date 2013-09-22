@@ -9,6 +9,7 @@
  * @property string $category_id
  * @property string $assigned_to
  * @property string $institution_name
+ * @property string $institution_id
  * @property string $contact_number
  * @property string $contact_email
  * @property string $status
@@ -47,7 +48,7 @@ class Issue extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('assigned_to, institution_name, contact_number, contact_email, status, category_id, reception_type_id', 'required'),
+			array('assigned_to, contact_number, contact_email, status, category_id, reception_type_id, institution_id', 'required'),
 			array('ticket_number, assigned_to, institution_name, contact_number, contact_email, status, create_user, update_user', 'length', 'max'=>255),
 			array('create_time, description', 'safe'),
 			// The following rule is used by search().
@@ -67,6 +68,7 @@ class Issue extends CActiveRecord
                     'user' => array(self::BELONGS_TO, 'User', 'assigned_to'),
                     'category' => array(self::BELONGS_TO, 'Category', 'category_id'),
                     'reception_type' => array(self::BELONGS_TO, 'IssueReceptionType', 'reception_type_id'),
+                    'entidad' => array(self::BELONGS_TO, 'Entidades', 'instituion_id'),
 		);
 	}
 
@@ -80,7 +82,7 @@ class Issue extends CActiveRecord
                         'category_id' => 'Categoria',
 			'ticket_number' => 'Numero de ticket',
 			'assigned_to' => 'Asignado a',
-			'institution_name' => 'Institucion',
+			'institution_name' => 'Nombre de la institución',
 			'contact_number' => 'Telefono',
 			'contact_email' => 'Correo',
 			'status' => 'Estado',
@@ -90,6 +92,7 @@ class Issue extends CActiveRecord
 			'update_user' => 'Actualizado por',
                         'reception_type_id' => 'Metodo de recepcion',
                         'description'=> 'Descripcion',
+                        'institution_id'=>'Institucion',
 		);
 	}
 
@@ -160,6 +163,17 @@ class Issue extends CActiveRecord
             
         }
         
+        public function getInstitutions()
+        {
+                $criteria=new CDbCriteria;
+                $criteria->select='codent,nombre'; 
+                $criteria->order = 'nombre';
+                $models = Entidades::model()->findAll($criteria);
+ 
+                $list = CHtml::listData($models, 'codent', 'nombre');
+                
+                return $list;
+        }
         
         
         public function getUsers()

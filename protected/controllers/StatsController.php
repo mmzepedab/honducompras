@@ -48,6 +48,11 @@ class StatsController extends Controller
 	{
 		$this->render('areaStats');
 	}
+        
+        public function timeAreaStats()
+	{
+		$this->render('timeStats');
+	}
 
 	// Uncomment the following methods and override them if needed
 	/*
