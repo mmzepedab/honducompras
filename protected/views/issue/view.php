@@ -23,6 +23,7 @@ $this->menu=array(
 	'attributes'=>array(
                 array('name'=>'Asignado a','value'=>isset($model->user)?CHtml::encode($model->user->concatened):"Desconocido"),
 		array('name'=>'Categoria','value'=>CHtml::encode($model->getCategory($model->category_id))),		
+                'institution_id',
                 'institution_name',
                 'contact_number',
 		'contact_email',

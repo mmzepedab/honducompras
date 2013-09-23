@@ -18,7 +18,8 @@ $this->menu=array(
 
     <!-- Js slider -->        
     <!-- load jQuery and the plugin -->
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+    <script src="js/jquery-latest.min.js"></script>
     <script src="js/bjqs-1.3.js"></script>      
     <!-- bjqs.css contains the *essential* css needed for the slider to work -->
     <link rel="stylesheet" href="css/bjqs.css">
@@ -40,7 +41,7 @@ $this->menu=array(
       <!-- End outer wrapper -->
 
       <script class="secret-source">
-        jQuery(document).ready(function($) {
+        $(document).ready(function($) {
           $('#banner-fade').bjqs({
             animtype      : 'fade',  
             height      : 250,
