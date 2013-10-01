@@ -55,6 +55,54 @@ $this->menu=array(
         });
       </script>
 
+   
+
+
+      <h2>Mesa de ayuda</h2>
+
+<div id="general_stats_table" style="display: box; width: 100%; height: 120px; border-top-style: solid; border-width: 1px; border-color: #2D5897;">
+    <div id='general_stat' title='Total Tickets' style="display: box; height: 80px; width: 100px; border-style: solid; border-width: 1px; border-color: lightgrey; margin: 10px; margin-left: 10px; float: left; padding: 10px 0px 10px 0px; background-image: url(images/ticket-icon.png)">
+        
+        <div align='center'><b>Total Tickets</b></div>
+                
+                <div align='center' style='margin-top: 20px; color: #2D5897'><h1 style='color: #2D5897'><b><?php echo $allTickets;?></b></h1></div>
+        
+    </div>
+    <div id='general_stat' title='Instituciones Atendidades' style="display: box; height: 80px; width: 100px; border-style: solid; border-width: 1px; border-color: lightgrey; margin: 10px; margin-left: 10px; float: left; padding: 10px 0px 10px 0px; background-image: url(images/ins-icon.png)">
+        
+        <div align='center'><b>Ins. Atendidas</b></div>
+                
+                <div align='center' style='margin-top: 20px; color: #2D5897'><h1 style='color: #2D5897'><b><?php echo "1,000";?></b></h1></div>
+        
+    </div>
+    <div id='general_stat' title='Promedio de consultas recibidas por dia' style="display: box; height: 80px; width: 100px; border-style: solid; border-width: 1px; border-color: lightgrey; margin: 10px; margin-left: 10px; float: left; padding: 10px 0px 10px 0px; background-image: url(images/estadisticas-icon.png)">
+        
+        <div align='center'><b>Con. Diarias</b></div>
+                
+                <div align='center' style='margin-top: 20px; color: #2D5897'><h1 style='color: #2D5897'><b><?php echo "57.25";?></b></h1></div>
+        
+    </div>
+    <div id='general_stat' title='Instituciones Atendidades' style="display: box; height: 80px; width: 100px; border-style: solid; border-width: 1px; border-color: lightgrey; margin: 10px; margin-left: 10px; float: left; padding: 10px 0px 10px 0px; background-image: url(images/por-icon.png)">
+        
+        <div align='center'><b>Ins. Atendidas</b></div>
+                
+                <div align='center' style='margin-top: 20px; color: #2D5897'><h1 style='color: #2D5897'><b><?php echo "57.25";?></b></h1></div>
+        
+    </div>
+    <div id='general_stat' title='Instituciones Atendidades' style="display: box; height: 80px; width: 100px; border-style: solid; border-width: 1px; border-color: lightgrey; margin: 10px; margin-left: 10px; float: left; padding: 10px 0px 10px 0px; background-image: url(images/usu-icon.png)">
+        
+        <div align='center'><b>Per. Atendidas</b></div>
+                
+                <div align='center' style='margin-top: 20px; color: #2D5897'><h1 style='color: #2D5897'><b><?php echo "57.25";?></b></h1></div>
+        
+    </div>
+    
+</div>
+
+</br>
+</br>
+</br>
+</br>
        
         <b>¿Qué es HonduCompras?</b>
         <p align="justify">Mediante el Decreto Ejecutivo 010/2005 promulgado en octubre de 2005, se crea el Sistema de Información de Contratación y Adquisiciones del Estado de Honduras, “HonduCompras”,<a href="www.honducompras.gob.hn">www.honducompras.gob.hn</a>, el cual es el único medio por el que se difundirá y gestionará, a través de Internet, los procedimientos de contratación que celebren los órganos comprendidos en el ámbito de aplicación de la Ley de Contratación del Estado, para lo cual el Órgano Responsable de su administración establecerá los mecanismos, plazos y condiciones para la incorporación gradual de las entidades al Sistema.</p>

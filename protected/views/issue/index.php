@@ -16,6 +16,7 @@ $this->menu=array(
 Numero de ticket:
 <?php 
     $defaultValue = isset($_GET['uId']) ? $_GET['uId'] : 'prompt';
+    $defaultValueStatus = isset($_GET['sId']) ? $_GET['sId'] : 'prompt';
     echo CHtml::beginForm(CHtml::normalizeUrl(array('issue/index')), 'get', array('id'=>'filter-form'))
     . CHtml::textField('tNumber', (isset($_GET['string'])) ? $_GET['string'] : '', array('id'=>'tNumber'))
     . CHtml::dropDownList('uId', 
@@ -23,7 +24,13 @@ Numero de ticket:
             User::model()->getHelpDeskUsers(), 
             array('prompt'=>'Por oficial de mesa de ayuda',
                             'options'=>array($defaultValue=>array('selected'=>'selected'))
-                            ))        
+                            ))
+    . CHtml::dropDownList('sId', 
+    'promt', 
+    Issue::model()->getStatusOptions(), 
+    array('prompt'=>'Estado',
+                    'options'=>array($defaultValueStatus=>array('selected'=>'selected'))
+                    )) 
     . CHtml::submitButton('Buscar', array('name'=>''))
     . CHtml::link('Mostrar todos los resultados',array('issue/index'),array('style'=>'font-size:smaller;text-decoration:none;'))
     . CHtml::endForm();

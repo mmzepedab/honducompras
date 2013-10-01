@@ -28,7 +28,7 @@ class StatsController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','AreaStats'),
+				'actions'=>array('index','AreaStats','institutionStats'),
 				'roles'=>array('helpdesk_admin','helpdesk_central','helpdesk_officer'),
 			),
 			array('deny',  // deny all users
@@ -47,6 +47,11 @@ class StatsController extends Controller
         public function actionAreaStats()
 	{
 		$this->render('areaStats');
+	}
+        
+        public function actionInstitutionStats()
+	{
+		$this->render('institutionStats');
 	}
         
         public function timeAreaStats()

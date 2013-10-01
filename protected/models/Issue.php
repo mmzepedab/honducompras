@@ -15,6 +15,7 @@
  * @property string $status
  * @property string $create_time
  * @property string $create_user
+ * @property string $update_time
  * @property string $update_user
  * @property string $description
  */
@@ -68,7 +69,7 @@ class Issue extends CActiveRecord
                     'user' => array(self::BELONGS_TO, 'User', 'assigned_to'),
                     'category' => array(self::BELONGS_TO, 'Category', 'category_id'),
                     'reception_type' => array(self::BELONGS_TO, 'IssueReceptionType', 'reception_type_id'),
-                    'entidad' => array(self::BELONGS_TO, 'Entidades', 'instituion_id'),
+                    'entidad' => array(self::BELONGS_TO, 'Entidades', 'institution_id'),
 		);
 	}
 
@@ -89,6 +90,7 @@ class Issue extends CActiveRecord
                         'statusText' => 'Estado',
 			'create_time' => 'Hora creado',
 			'create_user' => 'Creado por',
+                        'update_time' => 'Hora actualizado',
 			'update_user' => 'Actualizado por',
                         'reception_type_id' => 'Metodo de recepcion',
                         'description'=> 'Descripcion',
@@ -154,7 +156,8 @@ class Issue extends CActiveRecord
                     
                     //Add Ticket Numbet to database
                     $this->ticket_number = date("m")."-".date("y")."-".str_pad(((isset($row['order_number']) ? $row['order_number'] : 0) + 1), 4, "0", STR_PAD_LEFT); 
-                }else{                    
+                }else{
+                    $this->update_time = Yii::app()->Date->now();
                     $this->update_user = Yii::app()->user->name;
                 }
                 return true;

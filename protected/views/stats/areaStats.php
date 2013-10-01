@@ -7,7 +7,8 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Rendimiento por oficial', 'url'=>array('stats/index')),
-	array('label'=>'Consultas por area', 'url'=>array('stats/areaStats')),
+	array('label'=>'Consultas por area', 'url'=>array('stats/areaStats')),    
+        array('label'=>'Consultas por institución', 'url'=>array('stats/institutionStats')),
         array('label'=>'Administrar consultas', 'url'=>array('issue/admin')),
 );
 
@@ -47,7 +48,7 @@ $this->menu=array(
 
         var options = {
           title: 'Consultas por area',
-          colors: ['#B3B3B3', '#2D5897', '#339900', '#CC3333', '#FFCC00', '#CD38FF']
+          colors: ['#B3B3B3', '#339900', '#CC3333', '#2D5897', '#FFCC00', '#CD38FF', '#66FF33']
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));

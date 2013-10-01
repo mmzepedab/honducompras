@@ -67,7 +67,7 @@ class Entidades extends CActiveRecord
 	{
 		return array(
 			'codent' => 'Codent',
-			'nombre' => 'Nombre',
+			'nombre' => 'Institución',
 			'siglas' => 'Siglas',
 			'codigo_tipo' => 'Codigo Tipo',
 			'direccion' => 'Direccion',

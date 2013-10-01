@@ -19,6 +19,10 @@
 	<?php echo isset($data->user)?CHtml::encode($data->user->concatened):"Desconocido"; ?>       
 	<br />
 
+        <b><?php echo CHtml::encode($data->getAttributeLabel('institution_id')); ?>:</b>
+	<?php echo CHtml::encode($data->entidad->nombre); ?>
+	<br />
+        
 	<b><?php echo CHtml::encode($data->getAttributeLabel('institution_name')); ?>:</b>
 	<?php echo CHtml::encode($data->institution_name); ?>
 	<br />
@@ -37,6 +41,10 @@
         
         <b><?php echo CHtml::encode($data->getAttributeLabel('create_time')); ?>:</b>
 	<?php echo CHtml::encode($data->create_time); ?>
+	<br />
+        
+        <b><?php echo CHtml::encode($data->getAttributeLabel('update_time')); ?>:</b>
+	<?php echo CHtml::encode($data->update_time); ?>
 	<br />
 
 	<?php /*
