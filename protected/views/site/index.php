@@ -49,7 +49,7 @@ $this->menu=array(
             responsive  : true,
             nexttext : '>', // Text for 'next' button (can use HTML)
             prevtext : '<', // Text for 'previous' button (can use HTML)
-            showmarkers : false, 
+            showmarkers : false 
           });
 
         });
@@ -65,7 +65,7 @@ $this->menu=array(
         
         <div align='center'><b>Total Tickets</b></div>
                 
-                <div align='center' style='margin-top: 20px; color: #2D5897'><h1 style='color: #2D5897'><b><?php echo $allTickets;?></b></h1></div>
+                <div align='center' style='margin-top: 20px; color: #2D5897'><h1 style='color: #2D5897'><b></b></h1></div>
         
     </div>
     <div id='general_stat' title='Instituciones Atendidades' style="display: box; height: 80px; width: 100px; border-style: solid; border-width: 1px; border-color: lightgrey; margin: 10px; margin-left: 10px; float: left; padding: 10px 0px 10px 0px; background-image: url(images/ins-icon.png)">
