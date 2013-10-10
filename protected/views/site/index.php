@@ -105,7 +105,7 @@ $this->menu=array(
 </br>
        
         <b>¿Qué es HonduCompras?</b>
-        <p align="justify">Mediante el Decreto Ejecutivo 010/2005 promulgado en octubre de 2005, se crea el Sistema de Información de Contratación y Adquisiciones del Estado de Honduras, “HonduCompras”,<a href="www.honducompras.gob.hn">www.honducompras.gob.hn</a>, el cual es el único medio por el que se difundirá y gestionará, a través de Internet, los procedimientos de contratación que celebren los órganos comprendidos en el ámbito de aplicación de la Ley de Contratación del Estado, para lo cual el Órgano Responsable de su administración establecerá los mecanismos, plazos y condiciones para la incorporación gradual de las entidades al Sistema.</p>
+        <p align="justify">Mediante el Decreto Ejecutivo 010/2005 promulgado en octubre de 2005, se crea el Sistema de Información de Contratación y Adquisiciones del Estado de Honduras, “HONDUCOMPRAS�?,<a href="www.honducompras.gob.hn">www.honducompras.gob.hn</a>, el cual es el único medio por el que se difundirá y gestionará, a través de Internet, los procedimientos de contratación que celebren los órganos comprendidos en el ámbito de aplicación de la Ley de Contratación del Estado, para lo cual el Órgano Responsable de su administración establecerá los mecanismos, plazos y condiciones para la incorporación gradual de las entidades al Sistema.</p>
 
         <b>¿Quién es el responsable por administrar HonduCompras?</b>
         <p align="justify">La Oficina Normativa de Contratación y Adquisiciones del Estado (ONCAE) será la entidad responsable por administrar HonduCompras.</p>
