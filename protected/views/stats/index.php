@@ -113,7 +113,6 @@ GROUP BY convert(char(3), create_time, 0) + ' ' + convert(char, datepart (d, cre
           colors: ['#2D5897', '#B3B3B3'],
           width: 600,
           height: 200,
-          valueLabelsInterval: 1,
           min: 0
         };
         
